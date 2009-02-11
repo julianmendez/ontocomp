@@ -38,7 +38,8 @@ import javax.swing.text.BadLocationException;
 import org.apache.log4j.Logger;
 
 import de.tudresden.inf.tcs.oclib.IndividualContext;
-import de.tudresden.inf.tcs.oclib.DLExpert;
+// import de.tudresden.inf.tcs.oclib.DLExpert;
+import de.tudresden.inf.tcs.oclib.IndividualObject;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalAttributeException;
 import de.tudresden.inf.tcs.fcaapi.Expert;
 import de.tudresden.inf.tcs.fcaapi.action.ExpertAction;
@@ -48,9 +49,35 @@ import de.tudresden.inf.tcs.fcalib.PartialObjectDescription;
 import de.tudresden.inf.tcs.ontocomp.Constants;
 import de.tudresden.inf.tcs.ontocomp.ui.action.*;
 
+/* 
+ * OntoComP: a Protégé plugin for completing OWL ontologies.
+ * Copyright (C) 2009  Baris Sertkaya
+ * 
+ * This file is part of OntoComP.
+ * OntoComP is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * OntoComP is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OntoComp.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * OntoComP tab.
+ * @author Baris Sertkaya
+ * Technische Universtaet Dresden
+ * sertkaya@tcs.inf.tu-dresden.de
+ */
+
 
 public class OntoComPViewComponent extends AbstractOWLViewComponent implements DropTargetListener, 
-	ActionListener, DLExpert {
+	ActionListener, Expert<OWLClass,OWLIndividual,IndividualObject> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -872,13 +899,13 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		listeners.clear();
 	}
 	
-	public synchronized void fireExpertAction(ExpertAction<OWLClass,OWLIndividual> action) {
+	public synchronized void fireExpertAction(ExpertAction action) {
 		for (ExpertActionListener<OWLClass,OWLIndividual> listener : listeners) {
 			listener.expertPerformedAction(action);
 		}
 	}
 	
-	public void counterExampleInvalid(OWLIndividual counterExample, int reason) {
+	public void counterExampleInvalid(IndividualObject counterExample, int reason) {
 		switch (reason) {
 		case Expert.COUNTEREXAMPLE_EXISTS: 
 			writeMessage(GUIConstants.COUNTEREXAMPLE_EXISTS_MSG);

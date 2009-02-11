@@ -4,12 +4,26 @@ import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
-import org.semanticweb.owl.model.OWLClass;
-import org.semanticweb.owl.model.OWLIndividual;
-
-import de.tudresden.inf.tcs.fcalib.action.StartExplorationAction;
 import de.tudresden.inf.tcs.ontocomp.Constants;
-import de.tudresden.inf.tcs.ontocomp.ui.OntoComPViewComponent;
+
+/* 
+ * OntoComP: a Protégé plugin for completing OWL ontologies.
+ * Copyright (C) 2009  Baris Sertkaya
+ * 
+ * This file is part of OntoComP.
+ * OntoComP is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * OntoComP is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OntoComp.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /**
  * The expert action that is fired when the user wants to go to repair mode.
