@@ -8,6 +8,9 @@ import org.semanticweb.owl.model.OWLClass;
 import org.semanticweb.owl.model.OWLIndividual;
 import org.semanticweb.owl.model.OWLObject;
 
+import org.protege.editor.owl.model.event.OWLModelManagerChangeEvent;
+import org.protege.editor.owl.model.event.OWLModelManagerListener;
+import org.protege.editor.owl.model.event.EventType;
 import org.protege.editor.owl.ui.view.AbstractOWLViewComponent;
 import org.protege.editor.owl.ui.transfer.OWLObjectDataFlavor;
 // import org.protege.editor.owl.ui.OWLEntityCreationPanel;
@@ -77,7 +80,7 @@ import de.tudresden.inf.tcs.ontocomp.ui.action.*;
 
 
 public class OntoComPViewComponent extends AbstractOWLViewComponent implements DropTargetListener, 
-	ActionListener, Expert<OWLClass,OWLIndividual,IndividualObject> {
+	ActionListener, Expert<OWLClass,OWLIndividual,IndividualObject>, OWLModelManagerListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -146,6 +149,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	@Override
 	protected void disposeOWLView() {
 		removeExpertActionListeners();
+		getOWLModelManager().removeListener(this);
 	}
 
 	protected OWLClass updateView(OWLClass selectedClass) {
@@ -155,6 +159,8 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	@Override
 	protected void initialiseOWLView() throws Exception {
 		setLayout(new BorderLayout(10,10));
+		
+		getOWLModelManager().addListener(this);
 		
 		context = new IndividualContext(getOWLModelManager().getOWLOntologyManager(),
 				getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
@@ -168,7 +174,16 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	    // dt.setActive(true);
 
 	    changeGUIState(Constants.COMPLETION_INIT);
-	    log.info("OCP View Component initialized");
+	    log.info("OntoComP View Component initialized");
+	}
+	
+	public void handleChange(OWLModelManagerChangeEvent event) {
+		switch (event.getType()) {
+		case REASONER_CHANGED:
+			getContext().setReasoner(getOWLModelManager().getReasoner());
+			log.debug("set reasoner of the context");
+			break;
+		}
 	}
 	
 	public IndividualContext getContext() {
@@ -308,6 +323,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			undoSelectedModificationsButton.setEnabled(false);
 			undoAllModificationsButton.setEnabled(false);
 			contextTable.dataModel.fireTableStructureChanged();
+			tabbedPane.setEnabledAt(GUIConstants.COUNTEREXAMPLEEDITOR_TAB_INDEX, false);
 			break;
 		case Constants.QUESTION_REJECTED:
 			startButton.setEnabled(false);
