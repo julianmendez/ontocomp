@@ -10,7 +10,7 @@ import org.semanticweb.owl.model.OWLObject;
 
 import org.protege.editor.owl.model.event.OWLModelManagerChangeEvent;
 import org.protege.editor.owl.model.event.OWLModelManagerListener;
-import org.protege.editor.owl.model.event.EventType;
+// import org.protege.editor.owl.model.event.EventType;
 import org.protege.editor.owl.ui.view.AbstractOWLViewComponent;
 import org.protege.editor.owl.ui.transfer.OWLObjectDataFlavor;
 // import org.protege.editor.owl.ui.OWLEntityCreationPanel;
