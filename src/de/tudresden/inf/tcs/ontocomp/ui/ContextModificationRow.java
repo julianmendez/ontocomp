@@ -72,8 +72,7 @@ public class ContextModificationRow extends JPanel {
  		editorPane.setEditorKit(new HTMLEditorKit());
  		editorPane.setAlignmentX(LEFT_ALIGNMENT);
  		editorPane.setAlignmentY(CENTER_ALIGNMENT);
- 		// editorPane.setPreferredSize(new Dimension(650,50));
- 		editorPane.setPreferredSize(new Dimension(650,80));
+ 		editorPane.setPreferredSize(new Dimension(650,50));
  		editorPane.setMaximumSize(editorPane.getPreferredSize());
  		
  		// checkBox = new JCheckBox();
