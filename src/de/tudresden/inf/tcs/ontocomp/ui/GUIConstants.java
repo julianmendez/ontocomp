@@ -41,6 +41,7 @@ public interface GUIConstants {
 	final String RESET_BUTTON_TEXT = "Reset";
 	final String ACCEPT_BUTTON_TEXT = "Yes";
 	final String REJECT_BUTTON_TEXT = "No";
+	final String SKIP_BUTTON_TEXT = "Skip";
 	final String STOP_BUTTON_TEXT = "Stop";
 	final String REPAIR_BUTTON_TEXT = "Repair";
 	final String READY_BUTTON_TEXT = "Ready";
@@ -56,6 +57,7 @@ public interface GUIConstants {
 	static final String RESET_BUTTON_TOOLTIP = "Reset the completion";
 	static final String ACCEPT_BUTTON_TOOLTIP = "Yes, this is true in my application domain";
 	static final String REJECT_BUTTON_TOOLTIP = "No, this is not true in my application domain";
+	static final String SKIP_BUTTON_TOOLTIP = "Skip this question";
 	static final String STOP_BUTTON_TOOLTIP = "Stop the completion";
 	static final String REPAIR_BUTTON_TOOLTIP = "Ooops, I did something wrong!";
 	static final String READY_BUTTON_TOOLTIP = "Counterexample ready";
