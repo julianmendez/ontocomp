@@ -98,7 +98,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	
 	private JToolBar explorationToolBar,counterExampleEditorToolBar,debugToolBar;
 	
-	private JButton startButton, stopButton, repairButton, acceptButton, rejectButton,resetButton,
+	private JButton startButton, stopButton, repairButton, acceptButton, rejectButton,resetButton, skipButton,
 		readyButton, resumeButton, undoCEMButton, undoAllCEMButton, newCounterExampleButton,
 		undoSelectedModificationsButton, undoAllModificationsButton, advancedCounterExampleButton;
 	
@@ -226,6 +226,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(true);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -242,6 +243,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(true);
 			rejectButton.setEnabled(true);
+			skipButton.setEnabled(true);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -260,6 +262,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(true);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -279,6 +282,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(true);
 			rejectButton.setEnabled(true);
+			skipButton.setEnabled(true);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -294,6 +298,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -315,6 +320,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(true);
 			rejectButton.setEnabled(true);
+			skipButton.setEnabled(true);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -332,6 +338,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(true);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(true);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -349,6 +356,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(true);
 			rejectButton.setEnabled(true);
+			skipButton.setEnabled(true);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -367,6 +375,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			// these should be set/reset from CounterExampleCandidatesTable
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(true);
@@ -384,6 +393,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(true);
 			undoCEMButton.setEnabled(true);
 			undoAllCEMButton.setEnabled(true);
@@ -398,6 +408,10 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		case Constants.ALL_COUNTEREXAMLE_MODIFICATIONS_UNDONE:
 			// TODO
 			break;
+		case Constants.QUESTION_SKIPPED:
+			// TODO
+			contextTable.dataModel.fireTableStructureChanged();
+			break;
 		case Constants.SELECTED_CONTEXT_MODIFICATIONS_UNDONE:
 			// TODO
 			startButton.setEnabled(true);
@@ -406,6 +420,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(true);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -430,6 +445,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(true);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -454,6 +470,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(true);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -469,6 +486,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -492,6 +510,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			resetButton.setEnabled(false);
 			acceptButton.setEnabled(false);
 			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
 			readyButton.setEnabled(false);
 			undoCEMButton.setEnabled(false);
 			undoAllCEMButton.setEnabled(false);
@@ -539,6 +558,11 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		rejectButton = prepareButton(rejectAction, GUIConstants.REJECT_BUTTON_TOOLTIP, 
 				GUIConstants.REJECT_BUTTON_TEXT);
 		
+		SkipQuestionUIAction skipAction = new SkipQuestionUIAction();
+		skipAction.setViewComponent(this);
+		skipButton = prepareButton(skipAction, GUIConstants.SKIP_BUTTON_TOOLTIP,
+				GUIConstants.SKIP_BUTTON_TEXT);
+		
 		ResumeCompletionUIAction resumeCompletionAction = new ResumeCompletionUIAction();
 		resumeCompletionAction.setViewComponent(this);
 		resumeButton = prepareButton(resumeCompletionAction, GUIConstants.RESUME_BUTTON_TOOLTIP, 
@@ -553,6 +577,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		explorationToolBar.add(resumeButton);
 		explorationToolBar.add(acceptButton);
 		explorationToolBar.add(rejectButton);
+		explorationToolBar.add(skipButton);
 		return explorationToolBar;
 	}
 	
