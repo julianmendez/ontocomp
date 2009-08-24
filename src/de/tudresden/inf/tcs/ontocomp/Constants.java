@@ -63,4 +63,5 @@ public interface Constants {
 	static final int COMPLETION_FINISHED = 18;
 	static final int IMPLICATION_MAKES_ONTOLOGY_INCONSISTENT = 19;
 	static final int ADVANCED_COUNTEREXAMPLE_GENERATION = 20;
+	static final int QUESTION_SKIPPED = 21;
 }
