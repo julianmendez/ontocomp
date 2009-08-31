@@ -41,6 +41,7 @@ import javax.swing.text.BadLocationException;
 import org.apache.log4j.Logger;
 
 import de.tudresden.inf.tcs.oclib.IndividualContext;
+import de.tudresden.inf.tcs.oclib.ELIndividualContext;
 // import de.tudresden.inf.tcs.oclib.DLExpert;
 import de.tudresden.inf.tcs.oclib.IndividualObject;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalAttributeException;
@@ -162,13 +163,20 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		
 		getOWLModelManager().addListener(this);
 		
-		context = new IndividualContext(getOWLModelManager().getOWLOntologyManager(),
-				getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
+		if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.CEL_REASONER_ID)) {
+			context = new ELIndividualContext(getOWLModelManager().getOWLOntologyManager(),
+					getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
+		}
+		else {
+			context = new IndividualContext(getOWLModelManager().getOWLOntologyManager(),
+					getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
+		}
 		
-		context.setExpert(this);
-		addExpertActionListener(context);
+		getContext().setExpert(this);
+		addExpertActionListener(getContext());
 	
 		add(prepareGUI(),BorderLayout.CENTER);
+		contextTable.setContext(getContext());
 		
 	    dt = new DropTarget(this, this);
 	    // dt.setActive(true);
@@ -180,6 +188,21 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	public void handleChange(OWLModelManagerChangeEvent event) {
 		switch (event.getType()) {
 		case REASONER_CHANGED:
+			log.info("reasoner ID:" + getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId());
+			if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.CEL_REASONER_ID)) {
+				log.info("using the CEL reasoner");
+				context = new ELIndividualContext(getOWLModelManager().getOWLOntologyManager(),
+						getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
+				getContext().setExpert(this);
+				addExpertActionListener(getContext());
+				contextTable.setContext(getContext());
+			}
+			// else {
+			// 	context = new IndividualContext(getOWLModelManager().getOWLOntologyManager(),
+			// 			getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
+			// }
+		
+			
 			getContext().setReasoner(getOWLModelManager().getReasoner());
 			log.debug("set reasoner of the context");
 			break;
@@ -859,7 +882,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 				if (!clses.isEmpty()) {
 					for (OWLClass cls : clses) {
 						try {
-							context.addAttribute(cls);
+							getContext().addAttribute(cls);
 							// writeMessage(GUIConstants.ATTRIBUTE_ADDED_MSG + cls.getURI().getFragment());
 							changeGUIState(Constants.ATTRIBUTES_ADDED);
 						}
