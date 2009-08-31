@@ -82,7 +82,7 @@
    <!-- ============================================================= -->
 
    
-   <property name="protege.home"      location="${env.PROTEGE_HOME}/"/>
+   <property name="protege.home"      location="${env.PROTEGE_HOME}/build/dist/equinox/"/>
    <!-- <property name="protege.home"      location="../protege/build/dist/equinox"/> -->
    <property name = "src"             location = "./src"/>  
    <property name = "build"           location = "./build"/>
