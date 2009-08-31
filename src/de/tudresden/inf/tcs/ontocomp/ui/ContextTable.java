@@ -38,32 +38,44 @@ public class ContextTable extends JTable {
 	
 	protected AbstractTableModel dataModel;
 	
-	private static IndividualContext theContext = null;
+	// private static IndividualContext theContext = null;
 	
-	public ContextTable(IndividualContext context) {
+	private IndividualContext context;
+	
+	public ContextTable(IndividualContext c) {
+	// public ContextTable() {
 		super();
-		theContext = context;
+		context = c;
 		dataModel = new AbstractTableModel() {
 			private static final long serialVersionUID = 1L;
 
 			public int getColumnCount() {
-				return theContext.getAttributeCount() + 1;
+				// return theContext.getAttributeCount() + 1;
+				return getContext().getAttributeCount() + 1;
 			}
 			
 			public int getRowCount() {
-				return theContext.getObjectCount();
+				// return theContext.getObjectCount();
+				return getContext().getObjectCount();
 			}
 			
 			public Object getValueAt(int row,int column) {
 				if (column == 0) {
-					return theContext.getObjectAtIndex(row).getName();
+					// return theContext.getObjectAtIndex(row).getName();
+					// return getContext().getObjectAtIndex(row).getName();
+					return getContext().getObjectAtIndex(row).getIdentifier();
 				}
-				if (theContext.objectHasAttribute(theContext.getObjectAtIndex(row),
-						theContext.getAttributeAtIndex(column-1))) {
+				// if (theContext.objectHasAttribute(theContext.getObjectAtIndex(row),
+				if (getContext().objectHasAttribute(getContext().getObjectAtIndex(row),
+						// theContext.getAttributeAtIndex(column-1))) {
+						getContext().getAttributeAtIndex(column-1))) {
 					return GUIConstants.PLUS_SIGN;
 				}
-				if (theContext.objectHasNegatedAttribute(theContext.getObjectAtIndex(row),
-						theContext.getAttributeAtIndex(column-1))) {
+				// if (theContext.objectHasNegatedAttribute(theContext.getObjectAtIndex(row),
+				// 		theContext.getAttributeAtIndex(column-1))) {
+				// if (getContext().objectHasNegatedAttribute(theContext.getObjectAtIndex(row),
+				if (getContext().objectHasNegatedAttribute(getContext().getObjectAtIndex(row),
+						getContext().getAttributeAtIndex(column-1))) {
 					return GUIConstants.MINUS_SIGN;
 				}
 				return GUIConstants.QUESTION_MARK;
@@ -73,7 +85,8 @@ public class ContextTable extends JTable {
 				if (column == 0) {
 					return " ";
 				}
-				return theContext.getAttributeAtIndex(column-1).getURI().getFragment();
+				// return theContext.getAttributeAtIndex(column-1).getURI().getFragment();
+				return getContext().getAttributeAtIndex(column-1).getURI().getFragment();
 			}
 			
 			public boolean isCellEditable(int row, int column) {
@@ -81,6 +94,14 @@ public class ContextTable extends JTable {
 			}
 		};
 		setModel(dataModel);
+	}
+	
+	public void setContext(IndividualContext c) {
+		context = c;
+	}
+	
+	public IndividualContext getContext() {
+		return context;
 	}
 
 }
