@@ -64,4 +64,7 @@ public interface Constants {
 	static final int IMPLICATION_MAKES_ONTOLOGY_INCONSISTENT = 19;
 	static final int ADVANCED_COUNTEREXAMPLE_GENERATION = 20;
 	static final int QUESTION_SKIPPED = 21;
+	
+	// The ID of the CEL reasoner. Looks like it contains redundancies, but OK. CEL identifies it like this
+	static final String CEL_REASONER_ID="de.tudresden.inf.lat.cel.de.tudresden.inf.lat.cel.protege.CelReasonerFactory";
 }
