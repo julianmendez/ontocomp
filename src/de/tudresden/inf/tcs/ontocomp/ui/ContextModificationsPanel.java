@@ -87,7 +87,7 @@ public class ContextModificationsPanel extends JPanel implements ItemListener {
 	 	for (Iterator<AbstractContextModification> it = getViewComponent().getContext().getHistory().iterator(); it.hasNext();) {
 	 		// add(new ContextModificationRow(this,getViewComponent().getContext().getHistory().get(i)));
 	 		AbstractContextModification modification = it.next();
-	 		if (modification.canUndo()) {
+	 		// if (modification.canUndo()) {
 	 			JCheckBox checkBox = new JCheckBox();
 	 			checkBox.addItemListener(this);
 	 			modificationsHash.put(modification, checkBox);
@@ -95,14 +95,14 @@ public class ContextModificationsPanel extends JPanel implements ItemListener {
 	 				new ContextModificationRow(modification,checkBox);
 	 			add(modificationRow);
 	 			add(Box.createRigidArea(new Dimension(0, 5)));
-	 		}
-	 		else {
-	 			// TODO: put a why button instead of the undo checkbox
-	 			ContextModificationRow modificationRow = 
-	 				new ContextModificationRow(modification);
-	 			add(modificationRow);
-	 			add(Box.createRigidArea(new Dimension(0, 5)));
-	 		}
+	 		// }
+	 		// else {
+	 		// 	// TODO: put a why button instead of the undo checkbox
+	 		// 	ContextModificationRow modificationRow = 
+	 		// 		new ContextModificationRow(modification);
+	 		// 	add(modificationRow);
+	 		// 	add(Box.createRigidArea(new Dimension(0, 5)));
+	 		// }
 	 	}
 	 	revalidate();
 	 	repaint();
