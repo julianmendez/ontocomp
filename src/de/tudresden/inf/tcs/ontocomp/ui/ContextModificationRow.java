@@ -20,8 +20,8 @@ import de.tudresden.inf.tcs.fcaapi.change.ContextChange;
 import de.tudresden.inf.tcs.oclib.change.ClassAssertionChange;
 import de.tudresden.inf.tcs.oclib.change.NewIndividualChange;
 import de.tudresden.inf.tcs.oclib.change.NewSubClassAxiomChange;
-import de.tudresden.inf.tcs.oclib.change.AutomaticallyAcceptedSubClassAxiomChange;
-import de.tudresden.inf.tcs.oclib.change.AutomaticallyRejectedSubClassAxiomChange;
+// import de.tudresden.inf.tcs.oclib.change.AutomaticallyAcceptedSubClassAxiomChange;
+// import de.tudresden.inf.tcs.oclib.change.AutomaticallyRejectedSubClassAxiomChange;
 
 /* 
  * OntoComP: a Protégé plugin for completing OWL ontologies.
@@ -134,59 +134,59 @@ public class ContextModificationRow extends JPanel {
  		add(checkBox,BorderLayout.EAST);
 	}
 	
-	public ContextModificationRow(ContextChange<OWLClass> c) {
-		super();
-		// modificationsPanel = mp;
-		setBackground(Color.WHITE);
-		// setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-		setBorder(BorderFactory.createLineBorder(Color.black));
-		// setLayout(new BorderLayout());
-		setLayout(new BoxLayout(this,BoxLayout.LINE_AXIS));
- 		Renderer renderer = new Renderer();
- 		editorPane = new JEditorPane();
- 		editorPane.setEditable(false);
- 		editorPane.setContentType("text/html");
- 		editorPane.setEditorKit(new HTMLEditorKit());
- 		editorPane.setAlignmentX(LEFT_ALIGNMENT);
- 		editorPane.setAlignmentY(CENTER_ALIGNMENT);
- 		editorPane.setPreferredSize(new Dimension(650,50));
- 		editorPane.setMaximumSize(editorPane.getPreferredSize());
- 		
- 		try {
- 			switch (c.getType()) {
- 			case ContextChange.AUTOMATICALLY_ACCEPTED_IMPLICATION:
- 				editorPane.getEditorKit().read(new java.io.StringReader ("<html><body>" +
- 						GUIConstants.AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART1 + 
- 						renderer.render(((AutomaticallyAcceptedSubClassAxiomChange) c).getImplication().getPremise()) + "<br>" +
- 						GUIConstants.AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART2 + 
- 						renderer.render(((AutomaticallyAcceptedSubClassAxiomChange) c).getImplication().getConclusion()) +
- 						GUIConstants.AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART3 + 
- 				"</body></html>"),editorPane.getDocument(),
- 				editorPane.getDocument().getLength());
- 				break;
- 			case ContextChange.AUTOMATICALLY_REJECTED_IMPLICATION:
- 				editorPane.getEditorKit().read(new java.io.StringReader ("<html><body>" +
- 						GUIConstants.AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART1 + 
- 						renderer.render(((AutomaticallyRejectedSubClassAxiomChange) c).getImplication().getPremise()) + "<br>" +
- 						GUIConstants.AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART2 + 
- 						renderer.render(((AutomaticallyRejectedSubClassAxiomChange) c).getImplication().getConclusion()) +
- 						GUIConstants.AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART3 + 
- 				"</body></html>"),editorPane.getDocument(),
- 				editorPane.getDocument().getLength());
- 				break;
- 			}
- 		}
-		catch (BadLocationException e) {
- 			e.printStackTrace();
- 		}
- 		catch (IOException e) {
- 			e.printStackTrace();
- 		}
- 		
- 		add(editorPane,BorderLayout.WEST);
- 		// TODO: add the why button
- 		// add(checkBox,BorderLayout.EAST);
-	}
+//	public ContextModificationRow(ContextChange<OWLClass> c) {
+//		super();
+//		// modificationsPanel = mp;//
+//		setBackground(Color.WHITE);
+//		// setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+//		setBorder(BorderFactory.createLineBorder(Color.black));
+//		// setLayout(new BorderLayout());
+//		setLayout(new BoxLayout(this,BoxLayout.LINE_AXIS));
+// 		Renderer renderer = new Renderer();
+// 		editorPane = new JEditorPane();
+// 		editorPane.setEditable(false);
+// 		editorPane.setContentType("text/html");
+// 		editorPane.setEditorKit(new HTMLEditorKit());
+// 		editorPane.setAlignmentX(LEFT_ALIGNMENT);
+// 		editorPane.setAlignmentY(CENTER_ALIGNMENT);
+// 		editorPane.setPreferredSize(new Dimension(650,50));
+// 		editorPane.setMaximumSize(editorPane.getPreferredSize());
+// 		
+// 		try {
+// 			switch (c.getType()) {
+// 			case ContextChange.AUTOMATICALLY_ACCEPTED_IMPLICATION:
+// 				editorPane.getEditorKit().read(new java.io.StringReader ("<html><body>" +
+// 						GUIConstants.AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART1 + 
+// 						renderer.render(((AutomaticallyAcceptedSubClassAxiomChange) c).getImplication().getPremise()) + "<br>" +
+// 						GUIConstants.AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART2 + 
+// 						renderer.render(((AutomaticallyAcceptedSubClassAxiomChange) c).getImplication().getConclusion()) +
+// 						GUIConstants.AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART3 + 
+// 				"</body></html>"),editorPane.getDocument(),
+// 				editorPane.getDocument().getLength());
+// 				break;
+// 			case ContextChange.AUTOMATICALLY_REJECTED_IMPLICATION:
+// 				editorPane.getEditorKit().read(new java.io.StringReader ("<html><body>" +
+// 						GUIConstants.AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART1 + 
+// 						renderer.render(((AutomaticallyRejectedSubClassAxiomChange) c).getImplication().getPremise()) + "<br>" +
+// 						GUIConstants.AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART2 + 
+// 						renderer.render(((AutomaticallyRejectedSubClassAxiomChange) c).getImplication().getConclusion()) +
+// 						GUIConstants.AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART3 + 
+// 				"</body></html>"),editorPane.getDocument(),
+// 				editorPane.getDocument().getLength());
+// 				break;
+// 			}
+// 		}
+//		catch (BadLocationException e) {
+// 			e.printStackTrace();
+// 		}
+// 		catch (IOException e) {
+// 			e.printStackTrace();
+// 		}
+// 		
+// 		add(editorPane,BorderLayout.WEST);
+// 		// TODO: add the why button
+// 		// add(checkBox,BorderLayout.EAST);
+//	}
 	
  		
     // public Dimension getMinimumSize() {
