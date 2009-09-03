@@ -103,6 +103,12 @@ public interface GUIConstants {
 	static final String REQUEST_COUNTEREXAMPLE_TEXT_EMPTY_PREMISE = "Everything is an instance of ";
 	static final String REQUEST_COUNTEREXAMPLE_TEXT_PART1 = "Instances of ";
 	static final String REQUEST_COUNTEREXAMPLE_TEXT_PART2 = " are also instances of ";
+	static final String AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART1 = "Instances of ";
+	static final String AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART2 = " are also instances of ";
+	static final String AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART3 = " follows from the ontology";
+	static final String AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART1 = "Instances of ";
+	static final String AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART2 = " are also instances of ";
+	static final String AUTOMATICALLY_REJECTED_IMPLICATION_MODIFICATION_TEXT_PART3 = " makes the ontology inconsistent";
 	
 	static final char PLUS_SIGN = '+';
 	static final char MINUS_SIGN = '-';
