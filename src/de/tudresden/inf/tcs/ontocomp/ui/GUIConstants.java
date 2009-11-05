@@ -45,7 +45,7 @@ public interface GUIConstants {
 	final String STOP_BUTTON_TEXT = "Stop";
 	final String REPAIR_BUTTON_TEXT = "Repair";
 	final String READY_BUTTON_TEXT = "Ready";
-	final String RESUME_BUTTON_TEXT = "Resume";
+	final String RESUME_BUTTON_TEXT = "Continue";
 	final String UNDO_LAST_CECHANGE_BUTTON_TEXT = "Undo";
 	final String UNDO_ALL_CECHANGES_BUTTON_TEXT = "Undo all";
 	final String NEW_COUNTEREXAMPLE_BUTTON_TEXT = "New";
@@ -61,13 +61,15 @@ public interface GUIConstants {
 	static final String STOP_BUTTON_TOOLTIP = "Stop the completion";
 	static final String REPAIR_BUTTON_TOOLTIP = "Ooops, I did something wrong!";
 	static final String READY_BUTTON_TOOLTIP = "Counterexample ready";
-	static final String RESUME_BUTTON_TOOLTIP = "Resume the stopped completion";
+	static final String RESUME_BUTTON_TOOLTIP = "Continue with the next question";
 	static final String UNDO_LAST_CECHANGE_BUTTON_TOOLTIP = "Undo last change";
 	static final String UNDO_ALL_CECHANGES_BUTTON_TOOLTIP = "Undo all changes";
 	static final String NEW_COUNTEREXAMPLE_BUTTON_TOOLTIP = "Add new counterexample";
 	static final String UNDO_LAST_CHANGE_BUTTON_TOOLTIP = "Undo last change";
 	static final String UNDO_ALL_CHANGES_BUTTON_TOOLTIP = "Undo all changes";
 	static final String ADVANCED_COUNTEREXAMPLE_BUTTON_TOOLTIP = "Advanced counterexample generation";
+	static final String EXPLAIN_BUTTON_TEXT = "Why?";
+	static final String EXPLAIN_BUTTON_TOOLTIP = "Why does it already follow from the ontology?";
 	
 	static final String INITIAL_MSG = "Welcome to the <b>Ontology Completion Plugin</b><br>" +
 			"Drag & drop class names from the class hierarchy into the context, hit start when you are ready<hr>";
@@ -103,6 +105,7 @@ public interface GUIConstants {
 	static final String REQUEST_COUNTEREXAMPLE_TEXT_EMPTY_PREMISE = "Everything is an instance of ";
 	static final String REQUEST_COUNTEREXAMPLE_TEXT_PART1 = "Instances of ";
 	static final String REQUEST_COUNTEREXAMPLE_TEXT_PART2 = " are also instances of ";
+	static final String QUESTION_FOLLOWS_FROM_TBOX_MSG = "Question already follows from the ontology";
 	// static final String AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART1 = "Instances of ";
 	// static final String AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART2 = " are also instances of ";
 	// static final String AUTOMATICALLY_ACCEPTED_IMPLICATION_MODIFICATION_TEXT_PART3 = " follows from the ontology";
