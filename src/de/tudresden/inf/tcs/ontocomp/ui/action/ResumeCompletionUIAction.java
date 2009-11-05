@@ -1,5 +1,10 @@
 package de.tudresden.inf.tcs.ontocomp.ui.action;
 
+import java.util.Collections;
+import java.util.Set;
+
+import org.semanticweb.owl.model.OWLClass;
+
 import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
@@ -41,12 +46,24 @@ public class ResumeCompletionUIAction extends AbstractGUIAction {
 	 */
 	private static final Logger logger = Logger.getLogger(ResumeCompletionUIAction.class);
 	
+	// whether the completion should be resumed with the premise of the last question, or with an emtpy premise
+	private boolean flag;
+	
+	public ResumeCompletionUIAction(boolean withTheLastQuestion) {
+		flag = withTheLastQuestion;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		logger.info("=== Completion resumed ===");
 		getViewComponent().changeGUIState(Constants.COMPLETION_RESUMED);
-		getViewComponent().getContext().continueExploration(getViewComponent().getContext().
-				getCurrentQuestion().getPremise());
+		if (flag) {
+			getViewComponent().getContext().continueExploration(getViewComponent().getContext().
+					getCurrentQuestion().getPremise());
+		}
+		else {
+			Set<OWLClass> initialPremise = Collections.emptySet();
+			getViewComponent().getContext().continueExploration(initialPremise);
+		}
 	}
 
 }
