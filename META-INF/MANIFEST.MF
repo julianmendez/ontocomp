@@ -26,7 +26,8 @@ Export-Package: de.tudresden.inf.tcs.OCT;
 Bundle-ClassPath: .,
  lib/fcaapi.jar,
  lib/fcalib.jar,
- lib/oclib.jar
+ lib/oclib.jar,
+ lib/pellet-core.jar
 Require-Bundle: org.eclipse.equinox.registry,
  org.eclipse.equinox.common,
  org.protege.editor.core.application,
