@@ -44,7 +44,7 @@ public class SkipQuestionUIAction extends AbstractGUIAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		logger.info("Attributes before: " + getViewComponent().getContext().getAttributes());
+		// logger.info("Attributes before: " + getViewComponent().getContext().getAttributes());
 		logger.info("Skipping question: " + getViewComponent().getContext().getCurrentQuestion());
 		// stop completion
 		StopCompletionUIAction stop = new StopCompletionUIAction();
@@ -56,10 +56,14 @@ public class SkipQuestionUIAction extends AbstractGUIAction {
 		changeOrder.actionPerformed(e);
 		getViewComponent().changeGUIState(Constants.QUESTION_SKIPPED);
 		logger.info("Attributes after: " + getViewComponent().getContext().getAttributes());
-		// restart completion
-		StartCompletionUIAction start = new StartCompletionUIAction();
-		start.setViewComponent(getViewComponent());
-		start.actionPerformed(e);
+		// resume completion
+		// StartCompletionUIAction start = new StartCompletionUIAction();
+		// start.setViewComponent(getViewComponent());
+		// start.actionPerformed(e);
+		// resume with empty premise
+		ResumeCompletionUIAction resume = new ResumeCompletionUIAction(false);
+		resume.setViewComponent(getViewComponent());
+		resume.actionPerformed(e);
 	}
 
 }
