@@ -14,6 +14,10 @@ import org.protege.editor.owl.model.event.OWLModelManagerListener;
 import org.protege.editor.owl.ui.view.AbstractOWLViewComponent;
 import org.protege.editor.owl.ui.transfer.OWLObjectDataFlavor;
 // import org.protege.editor.owl.ui.OWLEntityCreationPanel;
+import org.protege.editor.owl.ui.framelist.ExplanationHandler;
+
+// for using incremental ABox consistency check feature of pellet
+import org.mindswap.pellet.PelletOptions;
 
 import java.awt.BorderLayout;
 import java.awt.dnd.DropTarget;
@@ -101,7 +105,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	
 	private JButton startButton, stopButton, repairButton, acceptButton, rejectButton,resetButton, skipButton,
 		readyButton, resumeButton, undoCEMButton, undoAllCEMButton, newCounterExampleButton,
-		undoSelectedModificationsButton, undoAllModificationsButton, advancedCounterExampleButton;
+		undoSelectedModificationsButton, undoAllModificationsButton, advancedCounterExampleButton,explainButton;
 	
 	// the console tabbed pane
 	private JTabbedPane consoleTabbedPane;
@@ -128,6 +132,12 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	private CounterExampleCandidatesTable counterExampleCandidatesTable;
 	
 	private DropTarget dt;
+	
+	// explanation handler for automatically accepted or rejected questions
+	private ExplanationHandler explanationHandler;
+	
+	// The implication that already follows from the ontology and thus needs explanation
+	private FCAImplication<OWLClass> implicationToBeExplained;
 	
 	/**
 	 * The list of listeners
@@ -181,6 +191,9 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	    dt = new DropTarget(this, this);
 	    // dt.setActive(true);
 
+	    // explanation handler. used for getting explanations for automatically accepted or rejected questions
+	    explanationHandler = getWorkspace().getEditorKit().get(ExplanationHandler.KEY);
+	    
 	    changeGUIState(Constants.COMPLETION_INIT);
 	    log.info("OntoComP View Component initialized");
 	}
@@ -197,6 +210,14 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 				addExpertActionListener(getContext());
 				contextTable.setContext(getContext());
 			}
+			// if Pellet is being used
+			else if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.PELLET_REASONER_ID)) {
+				log.info("using the Pellet reasoner");
+			    // Set flags for incremental consistency
+			    PelletOptions.USE_COMPLETION_QUEUE = true;
+			    PelletOptions.USE_INCREMENTAL_CONSISTENCY = true;
+			    PelletOptions.USE_SMART_RESTORE = false;
+			}
 			// else {
 			// 	context = new IndividualContext(getOWLModelManager().getOWLOntologyManager(),
 			// 			getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
@@ -204,6 +225,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		
 			
 			getContext().setReasoner(getOWLModelManager().getReasoner());
+			getContext().setReasonerID(getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId());
 			log.debug("set reasoner of the context");
 			break;
 		}
@@ -311,6 +333,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			undoAllCEMButton.setEnabled(false);
 			newCounterExampleButton.setEnabled(false);
 			repairButton.setEnabled(false);
+			explainButton.setEnabled(false);
 			undoSelectedModificationsButton.setEnabled(false);
 			undoAllModificationsButton.setEnabled(false);
 			break;
@@ -545,6 +568,25 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			tabbedPane.setEnabledAt(GUIConstants.REPAIR_TAB_INDEX, false);
 			tabbedPane.setSelectedComponent(counterExampleEditorPanel);
 			break;
+		case Constants.QUESTION_FOLLOWS_FROM_TBOX:
+			startButton.setEnabled(false);
+			stopButton.setEnabled(false);
+			resumeButton.setEnabled(true);
+			resetButton.setEnabled(false);
+			acceptButton.setEnabled(false);
+			rejectButton.setEnabled(false);
+			skipButton.setEnabled(false);
+			readyButton.setEnabled(false);
+			undoCEMButton.setEnabled(false);
+			undoAllCEMButton.setEnabled(false);
+			newCounterExampleButton.setEnabled(false);
+			repairButton.setEnabled(false);
+			undoSelectedModificationsButton.setEnabled(false);
+			undoAllModificationsButton.setEnabled(false);
+			explainButton.setEnabled(true);
+			tabbedPane.setEnabledAt(GUIConstants.COUNTEREXAMPLEEDITOR_TAB_INDEX, false);
+			tabbedPane.setEnabledAt(GUIConstants.REPAIR_TAB_INDEX,false);
+			break;
 		default:
 			log.fatal(GUIConstants.GUI_ACTION_UNDEFINED_MSG);
 		}
@@ -586,10 +628,16 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		skipButton = prepareButton(skipAction, GUIConstants.SKIP_BUTTON_TOOLTIP,
 				GUIConstants.SKIP_BUTTON_TEXT);
 		
-		ResumeCompletionUIAction resumeCompletionAction = new ResumeCompletionUIAction();
+		// resume with the premise of the last question
+		ResumeCompletionUIAction resumeCompletionAction = new ResumeCompletionUIAction(true);
 		resumeCompletionAction.setViewComponent(this);
 		resumeButton = prepareButton(resumeCompletionAction, GUIConstants.RESUME_BUTTON_TOOLTIP, 
 				GUIConstants.RESUME_BUTTON_TEXT);
+		
+		ExplainUIAction explainAction = new ExplainUIAction();
+		explainAction.setViewComponent(this);
+		explainButton = prepareButton(explainAction, GUIConstants.EXPLAIN_BUTTON_TOOLTIP,
+				GUIConstants.EXPLAIN_BUTTON_TEXT);
 		
 		// create the exploration toolbar
 		explorationToolBar = new JToolBar();
@@ -601,6 +649,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		explorationToolBar.add(acceptButton);
 		explorationToolBar.add(rejectButton);
 		explorationToolBar.add(skipButton);
+		explorationToolBar.add(explainButton);
 		return explorationToolBar;
 	}
 	
@@ -915,14 +964,14 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	public void askQuestion(FCAImplication<OWLClass> question) {
 		// currentQuestion = question;
 		if (question.getPremise().isEmpty()) {
-			writeMessage(GUIConstants.QUESTION_TEXT_EMPTY_PREMISE + 
-					renderer.render(question.getConclusion()) + "?<hr>");
+			writeMessage("<hr>" + GUIConstants.QUESTION_TEXT_EMPTY_PREMISE + 
+					renderer.render(question.getConclusion()) + "?");
 		}
 		else {
-			writeMessage(GUIConstants.QUESTION_TEXT_PART1 + 
+			writeMessage("<hr>" + GUIConstants.QUESTION_TEXT_PART1 + 
 					renderer.render(question.getPremise()) + "<br>" +
 				GUIConstants.QUESTION_TEXT_PART2  + 
-				renderer.render(question.getConclusion()) + "?<hr>");
+				renderer.render(question.getConclusion()) + "?");
 		}
 	}
 	
@@ -933,21 +982,33 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	public void requestCounterExample(FCAImplication<OWLClass> question) {
 	}
 	
+	public void implicationFollowsFromBackgroundKnowledge(FCAImplication<OWLClass> imp) {
+		writeMessage(GUIConstants.QUESTION_FOLLOWS_FROM_TBOX_MSG);
+		changeGUIState(Constants.QUESTION_FOLLOWS_FROM_TBOX);
+		implicationToBeExplained = imp;
+		// explanationHandler.handleExplain(getContext().toOWLSubClassAxiom(imp));
+	}
+	
+	// public void popUpExplanationWorkbench(FCAImplication<OWLClass> question) {
+	public void popUpExplanationWorkbench() {
+		explanationHandler.handleExplain(getContext().toOWLSubClassAxiom(implicationToBeExplained));
+	}
 	
 	public void forceToCounterExample(FCAImplication<OWLClass> question) {
 		if (question.getPremise().isEmpty()) {
-			writeMessage(GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT + "<br>" +
+			writeMessage("<hr>" + GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT + "<br>" +
 					GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT_EMPTY_PREMISE +
-					renderer.render(question.getConclusion()) + "<hr>");
+					renderer.render(question.getConclusion()));
 		}
 		else {
-			writeMessage(GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT + "<br>" +
+			writeMessage("<hr>" + GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT + "<br>" +
 					GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT_PART1 +
 					renderer.render(question.getPremise()) + "<br>" +
 					GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT_PART2 +
-					renderer.render(question.getConclusion()) + "<hr>");
+					renderer.render(question.getConclusion()));
 					
 		}
+		// explanationHandler.handleExplain(getContext().toOWLSubClassAxiom(question));
 		getContext().getCounterExampleCandidates().setQuestion(question);
 		getContext().getCounterExampleCandidates().update();
 		getCounterExampleCandidatesTable().getTableModel().fireTableStructureChanged();
