@@ -46,7 +46,7 @@ import org.apache.log4j.Logger;
 
 import de.tudresden.inf.tcs.oclib.IndividualContext;
 import de.tudresden.inf.tcs.oclib.ELIndividualContext;
-// import de.tudresden.inf.tcs.oclib.DLExpert;
+import de.tudresden.inf.tcs.oclib.DLExpert;
 import de.tudresden.inf.tcs.oclib.IndividualObject;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalAttributeException;
 import de.tudresden.inf.tcs.fcaapi.Expert;
@@ -85,7 +85,8 @@ import de.tudresden.inf.tcs.ontocomp.ui.action.*;
 
 
 public class OntoComPViewComponent extends AbstractOWLViewComponent implements DropTargetListener, 
-	ActionListener, Expert<OWLClass,OWLIndividual,IndividualObject>, OWLModelManagerListener {
+	ActionListener, DLExpert, OWLModelManagerListener {
+	// ActionListener, DLExpert<OWLClass,OWLIndividual,IndividualObject>, OWLModelManagerListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -225,10 +226,17 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		
 			
 			getContext().setReasoner(getOWLModelManager().getReasoner());
-			getContext().setReasonerID(getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId());
+			// getContext().setReasonerID(getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId());
 			log.debug("set reasoner of the context");
 			break;
 		}
+	}
+	
+	/** Returns the ID of the current reasoner.
+	 * @return the ID of the current reasoner
+	 */
+	public String getReasonerID() {
+		return getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId();
 	}
 	
 	public IndividualContext getContext() {
@@ -392,6 +400,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			repairButton.setEnabled(false);
 			undoSelectedModificationsButton.setEnabled(false);
 			undoAllModificationsButton.setEnabled(false);
+			advancedCounterExampleButton.setEnabled(true);
 			tabbedPane.setEnabledAt(GUIConstants.COUNTEREXAMPLEEDITOR_TAB_INDEX, true);
 			tabbedPane.setSelectedComponent(counterExampleEditorPanel);
 			break;
