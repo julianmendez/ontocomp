@@ -1,0 +1,447 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY countries "file:/tmp/countries.owl#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="file:/tmp/countries.owl#"
+     xml:base="file:/tmp/countries.owl"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:countries="file:/tmp/countries.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <rdfs:label>countries</rdfs:label>
+        <rdfs:comment>countries</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/tmp/countries.owl#hasBorderTo -->
+
+    <owl:ObjectProperty rdf:about="#hasBorderTo"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#hasTerritory -->
+
+    <owl:ObjectProperty rdf:about="#hasTerritory"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#locatedIn -->
+
+    <owl:ObjectProperty rdf:about="#locatedIn"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#memberOf -->
+
+    <owl:ObjectProperty rdf:about="#memberOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/tmp/countries.owl#AsianCountry -->
+
+    <owl:Class rdf:about="#AsianCountry">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#country"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#locatedIn"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#Asia"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- file:/tmp/countries.owl#EUmember -->
+
+    <owl:Class rdf:about="#EUmember">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#country"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#memberOf"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#EU"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- file:/tmp/countries.owl#EuropeanCountry -->
+
+    <owl:Class rdf:about="#EuropeanCountry">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#country"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#locatedIn"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#Europe"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- file:/tmp/countries.owl#G8member -->
+
+    <owl:Class rdf:about="#G8member">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#country"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#memberOf"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#G8"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- file:/tmp/countries.owl#MediterraneanCountry -->
+
+    <owl:Class rdf:about="#MediterraneanCountry">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#country"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasBorderTo"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#MediterrenaenSea"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- file:/tmp/countries.owl#NATOmember -->
+
+    <owl:Class rdf:about="#NATOmember">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#country"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#memberOf"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#NATO"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- file:/tmp/countries.owl#UNmember -->
+
+    <owl:Class rdf:about="#UNmember">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#country"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#memberOf"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#UN"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- file:/tmp/countries.owl#continent -->
+
+    <owl:Class rdf:about="#continent"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#country -->
+
+    <owl:Class rdf:about="#country"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#islandCountry -->
+
+    <owl:Class rdf:about="#islandCountry">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#country"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#hasTerritory"/>
+                                <owl:someValuesFrom>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="#locatedIn"/>
+                                        <owl:someValuesFrom rdf:resource="#continent"/>
+                                    </owl:Restriction>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- file:/tmp/countries.owl#organisation -->
+
+    <owl:Class rdf:about="#organisation"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#sea -->
+
+    <owl:Class rdf:about="#sea"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/tmp/countries.owl#Asia -->
+
+    <continent rdf:about="#Asia"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#China -->
+
+    <AsianCountry rdf:about="#China">
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf rdf:resource="#EUmember"/>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf rdf:resource="#EuropeanCountry"/>
+            </owl:Class>
+        </rdf:type>
+    </AsianCountry>
+    
+
+
+    <!-- file:/tmp/countries.owl#EU -->
+
+    <organisation rdf:about="#EU"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#Europe -->
+
+    <continent rdf:about="#Europe"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#France -->
+
+    <EuropeanCountry rdf:about="#France">
+        <rdf:type rdf:resource="#EUmember"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf rdf:resource="#AsianCountry"/>
+            </owl:Class>
+        </rdf:type>
+    </EuropeanCountry>
+    
+
+
+    <!-- file:/tmp/countries.owl#G8 -->
+
+    <organisation rdf:about="#G8"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#Germany -->
+
+    <EUmember rdf:about="#Germany">
+        <rdf:type rdf:resource="#EuropeanCountry"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf rdf:resource="#AsianCountry"/>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf rdf:resource="#MediterraneanCountry"/>
+            </owl:Class>
+        </rdf:type>
+    </EUmember>
+    
+
+
+    <!-- file:/tmp/countries.owl#Italy -->
+
+    <EUmember rdf:about="#Italy">
+        <rdf:type rdf:resource="#EuropeanCountry"/>
+        <rdf:type rdf:resource="#MediterraneanCountry"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf rdf:resource="#AsianCountry"/>
+            </owl:Class>
+        </rdf:type>
+    </EUmember>
+    
+
+
+    <!-- file:/tmp/countries.owl#MediterrenaenSea -->
+
+    <sea rdf:about="#MediterrenaenSea"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#Montenegro -->
+
+    <MediterraneanCountry rdf:about="#Montenegro">
+        <rdf:type rdf:resource="#EuropeanCountry"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf rdf:resource="#AsianCountry"/>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf rdf:resource="#EUmember"/>
+            </owl:Class>
+        </rdf:type>
+    </MediterraneanCountry>
+    
+
+
+    <!-- file:/tmp/countries.owl#NATO -->
+
+    <organisation rdf:about="#NATO"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#Russia -->
+
+    <AsianCountry rdf:about="#Russia"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#Syria -->
+
+    <MediterraneanCountry rdf:about="#Syria"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#UK -->
+
+    <EUmember rdf:about="#UK"/>
+    
+
+
+    <!-- file:/tmp/countries.owl#UN -->
+
+    <organisation rdf:about="#UN"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.914) http://owlapi.sourceforge.net -->
+
