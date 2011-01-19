@@ -17,8 +17,8 @@
 				<exclude name="**/manifest.mf" />
 			</fileset>
 		</copy>
-		<copy todir="${classes}/lib">
-			<fileset dir="${basedir}" includes="${requiredjars}" />
+		<copy todir="${classes}">
+			<fileset dir="${basedir}" includes="${bundlejars}" />
 		</copy>
 		<copy todir="${classes}">
 			<fileset dir="." includes="viewconfig-*.xml,plugin.xml" />
@@ -63,7 +63,7 @@
 		<echo message="    this can  be useful for ide developers - see the wiki" />
 	</target>
 
-	<target name="init">
+	<target name="init" depends="clean">
 		<tstamp>
 			<format property="build.time" pattern="MM/dd/yyyy hh:mm aa" />
 		</tstamp>
