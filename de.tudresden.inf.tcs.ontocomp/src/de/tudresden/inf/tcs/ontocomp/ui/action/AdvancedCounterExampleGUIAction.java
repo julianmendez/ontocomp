@@ -6,6 +6,11 @@ import org.apache.log4j.Logger;
 
 import de.tudresden.inf.tcs.ontocomp.Constants;
 
+import org.semanticweb.owl.model.AxiomType;
+
+import org.protege.editor.owl.ui.editor.OWLClassDescriptionEditor;
+
+
 /* 
  * OntoComP: a Protégé plugin for completing OWL ontologies.
  * Copyright (C) 2009  Baris Sertkaya
@@ -40,6 +45,8 @@ public class AdvancedCounterExampleGUIAction extends
 	public void actionPerformed(ActionEvent e) {
 		logger.info("Advanced counterexample generation");
 		getViewComponent().changeGUIState(Constants.ADVANCED_COUNTEREXAMPLE_GENERATION);
+		OWLClassDescriptionEditor descriptionEditor = 
+			getViewComponent().getOWLWorkspace().getOWLComponentFactory().getOWLClassDescriptionEditor(null);
 	}
 
 }
