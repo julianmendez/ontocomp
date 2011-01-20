@@ -14,7 +14,7 @@ Import-Package: de.tudresden.inf.tcs.OCT,
  javax.swing,
  javax.swing.table,
  org.apache.log4j
-Bundle-Version: 1.0
+Bundle-Version: 0.10.0
 Export-Package: de.tudresden.inf.tcs.OCT;
  uses:="de.tudresden.inf.tcs.fcalib,
  org.semanticweb.owl.model,
@@ -25,9 +25,9 @@ Export-Package: de.tudresden.inf.tcs.OCT;
  uses:="de.tudresden.inf.tcs.utils,de.tudresden.inf.tcs.fcaapi",
  de.tudresden.inf.tcs.utils
 Bundle-ClassPath: .,
- lib/de.tudresden.inf.tcs.fcaapi/jars/fcaapi-0.9.1.jar,
- lib/de.tudresden.inf.tcs.fcalib/jars/fcalib-0.9.1.jar,
- lib/de.tudresden.inf.tcs.oclib/jars/oclib-0.9.1.jar
+ lib/de.tudresden.inf.tcs.fcaapi/jars/fcaapi-0.10.0.jar,
+ lib/de.tudresden.inf.tcs.fcalib/jars/fcalib-0.10.0.jar,
+ lib/de.tudresden.inf.tcs.oclib/jars/oclib-0.10.0.jar
 Require-Bundle: org.eclipse.equinox.registry,
  org.eclipse.equinox.common,
  org.protege.editor.core.application,
