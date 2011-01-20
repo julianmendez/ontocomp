@@ -1,61 +1,66 @@
 package de.tudresden.inf.tcs.ontocomp.ui;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
-
-import org.semanticweb.owl.model.OWLClass;
-import org.semanticweb.owl.model.OWLIndividual;
-import org.semanticweb.owl.model.OWLObject;
-
-import org.protege.editor.owl.model.event.OWLModelManagerChangeEvent;
-import org.protege.editor.owl.model.event.OWLModelManagerListener;
-// import org.protege.editor.owl.model.event.EventType;
-import org.protege.editor.owl.ui.view.AbstractOWLViewComponent;
-import org.protege.editor.owl.ui.transfer.OWLObjectDataFlavor;
-// import org.protege.editor.owl.ui.OWLEntityCreationPanel;
-import org.protege.editor.owl.ui.framelist.ExplanationHandler;
-
-// for using incremental ABox consistency check feature of pellet
-import org.mindswap.pellet.PelletOptions;
-
 import java.awt.BorderLayout;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
-// import javax.swing.JTextArea;
-// import javax.swing.JTextPane;
-import javax.swing.JEditorPane;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
-import javax.swing.JButton;
-import javax.swing.AbstractAction;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
+import org.protege.editor.owl.model.event.OWLModelManagerChangeEvent;
+import org.protege.editor.owl.model.event.OWLModelManagerListener;
+import org.protege.editor.owl.ui.framelist.ExplanationHandler;
+import org.protege.editor.owl.ui.transfer.OWLObjectDataFlavor;
+import org.protege.editor.owl.ui.view.AbstractOWLViewComponent;
+import org.semanticweb.owl.model.OWLClass;
+import org.semanticweb.owl.model.OWLIndividual;
+import org.semanticweb.owl.model.OWLObject;
 
-import de.tudresden.inf.tcs.oclib.IndividualContext;
-import de.tudresden.inf.tcs.oclib.ELIndividualContext;
-import de.tudresden.inf.tcs.oclib.DLExpert;
-import de.tudresden.inf.tcs.oclib.IndividualObject;
-import de.tudresden.inf.tcs.fcaapi.exception.IllegalAttributeException;
 import de.tudresden.inf.tcs.fcaapi.Expert;
+import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 import de.tudresden.inf.tcs.fcaapi.action.ExpertAction;
 import de.tudresden.inf.tcs.fcaapi.action.ExpertActionListener;
-import de.tudresden.inf.tcs.fcaapi.FCAImplication;
+import de.tudresden.inf.tcs.fcaapi.exception.IllegalAttributeException;
 import de.tudresden.inf.tcs.fcalib.PartialObjectDescription;
+import de.tudresden.inf.tcs.oclib.DLExpert;
+import de.tudresden.inf.tcs.oclib.ELIndividualContext;
+import de.tudresden.inf.tcs.oclib.IndividualContext;
+import de.tudresden.inf.tcs.oclib.IndividualObject;
 import de.tudresden.inf.tcs.ontocomp.Constants;
-import de.tudresden.inf.tcs.ontocomp.ui.action.*;
+import de.tudresden.inf.tcs.ontocomp.ui.action.AdvancedCounterExampleGUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.ConfirmQuestionUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.ExplainUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.NewCounterExampleUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.ProvideCounterExampleUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.RejectQuestionUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.RepairUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.ResetCompletionUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.ResumeCompletionUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.SkipQuestionUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.StartCompletionUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.StopCompletionUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.UndoAllCEMUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.UndoAllContextModificationsUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.UndoLastCEMUIAction;
+import de.tudresden.inf.tcs.ontocomp.ui.action.UndoSelectedContextModificationsUIAction;
 
 /* 
  * OntoComP: a Protégé plugin for completing OWL ontologies.
@@ -215,9 +220,9 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			else if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.PELLET_REASONER_ID)) {
 				log.info("using the Pellet reasoner");
 			    // Set flags for incremental consistency
-			    PelletOptions.USE_COMPLETION_QUEUE = true;
-			    PelletOptions.USE_INCREMENTAL_CONSISTENCY = true;
-			    PelletOptions.USE_SMART_RESTORE = false;
+			    // PelletOptions.USE_COMPLETION_QUEUE = true;
+			    // PelletOptions.USE_INCREMENTAL_CONSISTENCY = true;
+			    // PelletOptions.USE_SMART_RESTORE = false;
 			}
 			// else {
 			// 	context = new IndividualContext(getOWLModelManager().getOWLOntologyManager(),
