@@ -3,12 +3,11 @@ package de.tudresden.inf.tcs.ontocomp.action;
 import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
-
-import org.semanticweb.owl.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLClass;
 
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
-import de.tudresden.inf.tcs.oclib.action.AbstractExpertAction;
 import de.tudresden.inf.tcs.oclib.IndividualContext;
+import de.tudresden.inf.tcs.oclib.action.AbstractExpertAction;
 
 /* 
  * OntoComP: a Protégé plugin for completing OWL ontologies.

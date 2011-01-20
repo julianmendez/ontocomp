@@ -85,8 +85,8 @@ public class ContextTable extends JTable {
 				if (column == 0) {
 					return " ";
 				}
-				// return theContext.getAttributeAtIndex(column-1).getURI().getFragment();
-				return getContext().getAttributeAtIndex(column-1).getURI().getFragment();
+				// return theContext.getAttributeAtIndex(column-1).getIRI().getFragment();
+				return getContext().getAttributeAtIndex(column-1).getIRI().getFragment();
 			}
 			
 			public boolean isCellEditable(int row, int column) {

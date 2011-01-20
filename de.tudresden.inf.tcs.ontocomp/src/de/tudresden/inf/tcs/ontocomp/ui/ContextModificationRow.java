@@ -1,27 +1,24 @@
 package de.tudresden.inf.tcs.ontocomp.ui;
 
-import java.io.IOException;
-
-import javax.swing.JPanel;
-import javax.swing.JEditorPane;
-import javax.swing.JCheckBox;
-import javax.swing.BoxLayout;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.text.BadLocationException;
-import javax.swing.BorderFactory;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.IOException;
 
-import org.semanticweb.owl.model.OWLClass;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JEditorPane;
+import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.html.HTMLEditorKit;
+
+import org.semanticweb.owlapi.model.OWLClass;
 
 import de.tudresden.inf.tcs.fcaapi.change.ContextChange;
 import de.tudresden.inf.tcs.oclib.change.ClassAssertionChange;
 import de.tudresden.inf.tcs.oclib.change.NewIndividualChange;
 import de.tudresden.inf.tcs.oclib.change.NewSubClassAxiomChange;
-// import de.tudresden.inf.tcs.oclib.change.AutomaticallyAcceptedSubClassAxiomChange;
-// import de.tudresden.inf.tcs.oclib.change.AutomaticallyRejectedSubClassAxiomChange;
 
 /* 
  * OntoComP: a Protégé plugin for completing OWL ontologies.

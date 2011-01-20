@@ -1,13 +1,11 @@
 package de.tudresden.inf.tcs.ontocomp.ui.action;
 
+import java.awt.event.ActionEvent;
 import java.util.Collections;
 import java.util.Set;
 
-import org.semanticweb.owl.model.OWLClass;
-
-import java.awt.event.ActionEvent;
-
 import org.apache.log4j.Logger;
+import org.semanticweb.owlapi.model.OWLClass;
 
 import de.tudresden.inf.tcs.ontocomp.Constants;
 

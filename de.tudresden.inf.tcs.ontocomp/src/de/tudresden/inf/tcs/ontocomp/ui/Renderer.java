@@ -1,10 +1,10 @@
 package de.tudresden.inf.tcs.ontocomp.ui;
 
-import java.util.Set;
 import java.util.Iterator;
+import java.util.Set;
 
-import org.semanticweb.owl.model.OWLClass;
-import org.semanticweb.owl.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 /* 
  * OntoComP: a Protégé plugin for completing OWL ontologies.
@@ -40,7 +40,7 @@ public class Renderer {
 		}
 		String str = "<b>";
 		for (Iterator<OWLClass> it = s.iterator(); it.hasNext();) {
-			str += it.next().getURI().getFragment();
+			str += it.next().getIRI().getFragment();
 			if (it.hasNext()) {
 				str += ", ";
 			}
@@ -49,8 +49,8 @@ public class Renderer {
 		return str;
 	}
 	
-	public String render(OWLIndividual i) {
-		return "<b>" + i.getURI().getFragment() + "</b>";
+	public String render(OWLNamedIndividual i) {
+		return "<b>" + i.getIRI().getFragment() + "</b>";
 	}
 	
 	public String render(OWLClass c, boolean complement) {

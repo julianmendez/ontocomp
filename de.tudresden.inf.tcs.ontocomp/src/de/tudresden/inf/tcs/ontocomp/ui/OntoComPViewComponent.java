@@ -27,12 +27,12 @@ import javax.swing.text.html.HTMLEditorKit;
 import org.apache.log4j.Logger;
 import org.protege.editor.owl.model.event.OWLModelManagerChangeEvent;
 import org.protege.editor.owl.model.event.OWLModelManagerListener;
-import org.protege.editor.owl.ui.framelist.ExplanationHandler;
+import org.protege.editor.owl.ui.explanation.ExplanationManager;
 import org.protege.editor.owl.ui.transfer.OWLObjectDataFlavor;
 import org.protege.editor.owl.ui.view.AbstractOWLViewComponent;
-import org.semanticweb.owl.model.OWLClass;
-import org.semanticweb.owl.model.OWLIndividual;
-import org.semanticweb.owl.model.OWLObject;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObject;
 
 import de.tudresden.inf.tcs.fcaapi.Expert;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
@@ -140,7 +140,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	private DropTarget dt;
 	
 	// explanation handler for automatically accepted or rejected questions
-	private ExplanationHandler explanationHandler;
+	private ExplanationManager explanationHandler;
 	
 	// The implication that already follows from the ontology and thus needs explanation
 	private FCAImplication<OWLClass> implicationToBeExplained;
@@ -148,7 +148,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	/**
 	 * The list of listeners
 	 */
-	private List<ExpertActionListener<OWLClass,OWLIndividual>> listeners;
+	private List<ExpertActionListener<OWLClass,OWLNamedIndividual>> listeners;
 	
 	// /**
 	//  * The current question
@@ -159,7 +159,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	
 	public OntoComPViewComponent() {
 		super();
-		listeners = new ArrayList<ExpertActionListener<OWLClass,OWLIndividual>>();
+		listeners = new ArrayList<ExpertActionListener<OWLClass,OWLNamedIndividual>>();
 	    renderer = new Renderer();
 	}
 	
@@ -198,7 +198,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	    // dt.setActive(true);
 
 	    // explanation handler. used for getting explanations for automatically accepted or rejected questions
-	    explanationHandler = getWorkspace().getEditorKit().get(ExplanationHandler.KEY);
+	    explanationHandler = getOWLModelManager().getExplanationManager();
 	    
 	    changeGUIState(Constants.COMPLETION_INIT);
 	    log.info("OntoComP View Component initialized");
@@ -950,7 +950,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 							changeGUIState(Constants.ATTRIBUTES_ADDED);
 						}
 						catch (IllegalAttributeException e) {
-							writeMessage(cls.getURI().getFragment() + GUIConstants.ATTRIBUTE_ALREADY_ADDED_MSG);
+							writeMessage(cls.getIRI().getFragment() + GUIConstants.ATTRIBUTE_ALREADY_ADDED_MSG);
 						}
 					}
 					dtde.dropComplete(true);
@@ -1005,7 +1005,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	
 	// public void popUpExplanationWorkbench(FCAImplication<OWLClass> question) {
 	public void popUpExplanationWorkbench() {
-		explanationHandler.handleExplain(getContext().toOWLSubClassAxiom(implicationToBeExplained));
+		explanationHandler.handleExplain(null, getContext().toOWLSubClassAxiom(implicationToBeExplained));
 	}
 	
 	public void forceToCounterExample(FCAImplication<OWLClass> question) {
@@ -1030,7 +1030,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	}
 	
 	// @Override
-	public synchronized void addExpertActionListener(ExpertActionListener<OWLClass,OWLIndividual> listener) {
+	public synchronized void addExpertActionListener(ExpertActionListener<OWLClass,OWLNamedIndividual> listener) {
 		listeners.add(listener);
 	}
 	
@@ -1039,7 +1039,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	}
 	
 	public synchronized void fireExpertAction(ExpertAction action) {
-		for (ExpertActionListener<OWLClass,OWLIndividual> listener : listeners) {
+		for (ExpertActionListener<OWLClass,OWLNamedIndividual> listener : listeners) {
 			listener.expertPerformedAction(action);
 		}
 	}

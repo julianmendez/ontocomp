@@ -3,9 +3,8 @@ package de.tudresden.inf.tcs.ontocomp.ui.action;
 import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
-
-import org.semanticweb.owl.model.OWLClass;
-import org.semanticweb.owl.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 import de.tudresden.inf.tcs.fcalib.action.ResetExplorationAction;
 import de.tudresden.inf.tcs.oclib.IndividualObject;
@@ -38,7 +37,7 @@ import de.tudresden.inf.tcs.ontocomp.ui.OntoComPViewComponent;
  * sertkaya@tcs.inf.tu-dresden.de
  */
 
-public class ResetCompletionUIAction extends ResetExplorationAction<OWLClass,OWLIndividual,IndividualObject> {
+public class ResetCompletionUIAction extends ResetExplorationAction<OWLClass,OWLNamedIndividual,IndividualObject> {
 
 	private static final long serialVersionUID = 1L;
 

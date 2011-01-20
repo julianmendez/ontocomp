@@ -89,7 +89,7 @@ public class CounterExampleCandidatesTable extends JTable {
 				if (column == 0) {
 					return " ";
 				}
-				return getViewComponent().getContext().getAttributeAtIndex(column-1).getURI().getFragment();
+				return getViewComponent().getContext().getAttributeAtIndex(column-1).getIRI().getFragment();
 			}
 			
 			public boolean isCellEditable(int row,int column) {

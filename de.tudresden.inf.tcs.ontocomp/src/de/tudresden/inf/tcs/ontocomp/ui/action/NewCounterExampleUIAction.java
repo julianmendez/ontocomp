@@ -3,9 +3,8 @@ package de.tudresden.inf.tcs.ontocomp.ui.action;
 import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
-
-import org.semanticweb.owl.model.OWLIndividual;
 import org.protege.editor.owl.model.entity.OWLEntityCreationSet;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 import de.tudresden.inf.tcs.ontocomp.Constants;
 
@@ -49,10 +48,10 @@ public class NewCounterExampleUIAction  extends AbstractGUIAction {
 		// getViewComponent().getContext().addObject(
 		// 		getViewComponent().getOWLWorkspace().createOWLIndividual().getOWLEntity(),
 		// 		getViewComponent().getContext().getCurrentQuestion().getPremise());
-		OWLEntityCreationSet<OWLIndividual> s = getViewComponent().getOWLWorkspace().createOWLIndividual();
+		OWLEntityCreationSet<OWLNamedIndividual> s = getViewComponent().getOWLWorkspace().createOWLIndividual();
 		if (! (s == null)) {
 			logger.info("New counterexample");
-			OWLIndividual ind = s.getOWLEntity();
+			OWLNamedIndividual ind = s.getOWLEntity();
 			getViewComponent().getContext().addIndividualToOntology(ind,
 					getViewComponent().getContext().getCurrentQuestion().getPremise());
 			getViewComponent().getCounterExampleCandidatesTable().incrementActionCounter();

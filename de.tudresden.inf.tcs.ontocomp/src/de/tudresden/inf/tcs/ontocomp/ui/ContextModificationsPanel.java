@@ -1,26 +1,23 @@
 package de.tudresden.inf.tcs.ontocomp.ui;
 
-import java.util.HashMap;
-import java.util.Iterator;
-
-import javax.swing.JPanel;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
-import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
+import java.util.Iterator;
 
-import org.semanticweb.owl.model.OWLClass;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
+import org.semanticweb.owlapi.model.OWLClass;
 
 import de.tudresden.inf.tcs.fcaapi.change.ContextChange;
 import de.tudresden.inf.tcs.oclib.change.AbstractContextModification;
-import de.tudresden.inf.tcs.ontocomp.ui.OntoComPViewComponent;
 
 /* 
  * OntoComP: a Protégé plugin for completing OWL ontologies.

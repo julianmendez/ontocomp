@@ -3,12 +3,9 @@ package de.tudresden.inf.tcs.ontocomp.ui.action;
 import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
+import org.protege.editor.owl.ui.editor.OWLClassDescriptionEditor;
 
 import de.tudresden.inf.tcs.ontocomp.Constants;
-
-import org.semanticweb.owl.model.AxiomType;
-
-import org.protege.editor.owl.ui.editor.OWLClassDescriptionEditor;
 
 
 /* 
