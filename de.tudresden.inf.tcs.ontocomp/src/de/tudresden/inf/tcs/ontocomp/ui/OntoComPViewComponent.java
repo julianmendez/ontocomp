@@ -180,12 +180,10 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		getOWLModelManager().addListener(this);
 		
 		if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.CEL_REASONER_ID)) {
-			context = new ELIndividualContext(getOWLModelManager().getOWLOntologyManager(),
-					getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
+			context = new ELIndividualContext(getOWLModelManager().getReasoner());
 		}
 		else {
-			context = new IndividualContext(getOWLModelManager().getOWLOntologyManager(),
-					getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
+			context = new IndividualContext(getOWLModelManager().getReasoner());
 		}
 		
 		getContext().setExpert(this);
@@ -206,12 +204,16 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	
 	public void handleChange(OWLModelManagerChangeEvent event) {
 		switch (event.getType()) {
+
+		case ONTOLOGY_CLASSIFIED:
+			getContext().setReasoner(getOWLModelManager().getReasoner());
+			break;
+
 		case REASONER_CHANGED:
 			log.info("reasoner ID:" + getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId());
 			if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.CEL_REASONER_ID)) {
 				log.info("using the CEL reasoner");
-				context = new ELIndividualContext(getOWLModelManager().getOWLOntologyManager(),
-						getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
+				context = new ELIndividualContext(getOWLModelManager().getReasoner());
 				getContext().setExpert(this);
 				addExpertActionListener(getContext());
 				contextTable.setContext(getContext());

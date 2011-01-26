@@ -1,9 +1,9 @@
 package de.tudresden.inf.tcs.ontocomp.ui;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultCellEditor;
 
 import org.apache.log4j.Logger;
 
@@ -146,7 +146,7 @@ public class CounterExampleCandidatesTable extends JTable {
 		return viewComponent;
 	}
 	
-	public Class getColumnClass(int c) {
+	public Class<?> getColumnClass(int c) {
 		return getValueAt(0, c).getClass();
 	}
 	
