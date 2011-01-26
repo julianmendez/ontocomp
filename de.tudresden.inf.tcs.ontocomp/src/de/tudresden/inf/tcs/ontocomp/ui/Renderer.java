@@ -3,6 +3,7 @@ package de.tudresden.inf.tcs.ontocomp.ui;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
@@ -40,7 +41,7 @@ public class Renderer {
 		}
 		String str = "<b>";
 		for (Iterator<OWLClass> it = s.iterator(); it.hasNext();) {
-			str += it.next().getIRI().getFragment();
+			str += toString(it.next().getIRI());
 			if (it.hasNext()) {
 				str += ", ";
 			}
@@ -50,7 +51,7 @@ public class Renderer {
 	}
 	
 	public String render(OWLNamedIndividual i) {
-		return "<b>" + i.getIRI().getFragment() + "</b>";
+		return "<b>" + toString(i.getIRI()) + "</b>";
 	}
 	
 	public String render(OWLClass c, boolean complement) {
@@ -62,4 +63,8 @@ public class Renderer {
 		}
 	}
 	
+	private String toString(IRI id) {
+		return (id.getFragment() == null) ?  id.toString(): id.getFragment().toString();
+	}
+
 }

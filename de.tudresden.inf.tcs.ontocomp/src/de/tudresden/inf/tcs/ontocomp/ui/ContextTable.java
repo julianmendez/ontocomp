@@ -4,6 +4,8 @@ package de.tudresden.inf.tcs.ontocomp.ui;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
+import org.semanticweb.owlapi.model.IRI;
+
 import de.tudresden.inf.tcs.oclib.IndividualContext;
 
 /* 
@@ -63,7 +65,7 @@ public class ContextTable extends JTable {
 				if (column == 0) {
 					// return theContext.getObjectAtIndex(row).getName();
 					// return getContext().getObjectAtIndex(row).getName();
-					return getContext().getObjectAtIndex(row).getIdentifier();
+					return toString(getContext().getObjectAtIndex(row).getIdentifier().getIRI());
 				}
 				// if (theContext.objectHasAttribute(theContext.getObjectAtIndex(row),
 				if (getContext().objectHasAttribute(getContext().getObjectAtIndex(row),
@@ -86,11 +88,15 @@ public class ContextTable extends JTable {
 					return " ";
 				}
 				// return theContext.getAttributeAtIndex(column-1).getIRI().getFragment();
-				return getContext().getAttributeAtIndex(column-1).getIRI().getFragment();
+				return toString(getContext().getAttributeAtIndex(column-1).getIRI());
 			}
 			
 			public boolean isCellEditable(int row, int column) {
 				return false;
+			}
+			
+			private String toString(IRI id) {
+				return (id.getFragment() == null) ?  id.toString(): id.getFragment().toString();
 			}
 		};
 		setModel(dataModel);
