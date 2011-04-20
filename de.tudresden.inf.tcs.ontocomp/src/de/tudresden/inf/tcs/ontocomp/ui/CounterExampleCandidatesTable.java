@@ -6,7 +6,6 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import org.apache.log4j.Logger;
-import org.semanticweb.owlapi.model.IRI;
 
 import de.tudresden.inf.tcs.ontocomp.Constants;
 
@@ -71,7 +70,7 @@ public class CounterExampleCandidatesTable extends JTable {
 			
 			public Object getValueAt(int row,int column) {
 				if (column == 0) {
-					return toString(getViewComponent().getContext().getCounterExampleCandidates().get(row).getIdentifier().getIRI());
+					return viewComponent.getRenderer().renderEntity(getViewComponent().getContext().getCounterExampleCandidates().get(row).getIdentifier());
 				}
 				if (getViewComponent().getContext().objectHasAttribute(
 						getViewComponent().getContext().getCounterExampleCandidates().get(row),
@@ -90,7 +89,7 @@ public class CounterExampleCandidatesTable extends JTable {
 				if (column == 0) {
 					return " ";
 				}
-				return toString(getViewComponent().getContext().getAttributeAtIndex(column-1).getIRI());
+				return viewComponent.getRenderer().renderEntity(getViewComponent().getContext().getAttributeAtIndex(column-1));
 			}
 			
 			public boolean isCellEditable(int row,int column) {
@@ -130,10 +129,6 @@ public class CounterExampleCandidatesTable extends JTable {
 					logger.debug("Ontology became inconsistent");
 					// TODO: disallow everything but Undo!
 				}
-			}
-			
-			private String toString(IRI id) {
-				return (id.getFragment() == null) ?  id.toString(): id.getFragment().toString();
 			}
 		};
 		setModel(dataModel);

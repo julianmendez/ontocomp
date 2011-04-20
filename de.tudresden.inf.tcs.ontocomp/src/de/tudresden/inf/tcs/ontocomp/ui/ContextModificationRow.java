@@ -56,7 +56,7 @@ public class ContextModificationRow extends JPanel {
 	
 	// public ContextModificationRow(ContextModificationsPanel mp, ContextChange<OWLClass> c,
 	// 		JCheckBox checkBox) {
-	public ContextModificationRow(ContextChange<OWLClass> c, JCheckBox checkBox) {
+	public ContextModificationRow(ContextChange<OWLClass> c, JCheckBox checkBox, Renderer renderer) {
 		super();
 		// modificationsPanel = mp;
 		setBackground(Color.WHITE);
@@ -64,7 +64,6 @@ public class ContextModificationRow extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		// setLayout(new BorderLayout());
 		setLayout(new BoxLayout(this,BoxLayout.LINE_AXIS));
- 		Renderer renderer = new Renderer();
  		editorPane = new JEditorPane();
  		editorPane.setEditable(false);
  		editorPane.setContentType("text/html");

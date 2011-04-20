@@ -4,8 +4,6 @@ package de.tudresden.inf.tcs.ontocomp.ui;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import org.semanticweb.owlapi.model.IRI;
-
 import de.tudresden.inf.tcs.oclib.IndividualContext;
 
 /* 
@@ -43,10 +41,13 @@ public class ContextTable extends JTable {
 	// private static IndividualContext theContext = null;
 	
 	private IndividualContext context;
+
+	private Renderer renderer;
 	
-	public ContextTable(IndividualContext c) {
+	public ContextTable(IndividualContext c, Renderer r) {
 	// public ContextTable() {
 		super();
+		renderer = r;
 		context = c;
 		dataModel = new AbstractTableModel() {
 			private static final long serialVersionUID = 1L;
@@ -65,7 +66,7 @@ public class ContextTable extends JTable {
 				if (column == 0) {
 					// return theContext.getObjectAtIndex(row).getName();
 					// return getContext().getObjectAtIndex(row).getName();
-					return toString(getContext().getObjectAtIndex(row).getIdentifier().getIRI());
+					return renderer.renderEntity(getContext().getObjectAtIndex(row).getIdentifier());
 				}
 				// if (theContext.objectHasAttribute(theContext.getObjectAtIndex(row),
 				if (getContext().objectHasAttribute(getContext().getObjectAtIndex(row),
@@ -88,15 +89,11 @@ public class ContextTable extends JTable {
 					return " ";
 				}
 				// return theContext.getAttributeAtIndex(column-1).getIRI().getFragment();
-				return toString(getContext().getAttributeAtIndex(column-1).getIRI());
+				return renderer.renderEntity(getContext().getAttributeAtIndex(column-1));
 			}
 			
 			public boolean isCellEditable(int row, int column) {
 				return false;
-			}
-			
-			private String toString(IRI id) {
-				return (id.getFragment() == null) ?  id.toString(): id.getFragment().toString();
 			}
 		};
 		setModel(dataModel);

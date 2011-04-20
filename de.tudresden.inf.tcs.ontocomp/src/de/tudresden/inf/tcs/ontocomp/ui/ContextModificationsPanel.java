@@ -89,7 +89,7 @@ public class ContextModificationsPanel extends JPanel implements ItemListener {
 	 			checkBox.addItemListener(this);
 	 			modificationsHash.put(modification, checkBox);
 	 			ContextModificationRow modificationRow = 
-	 				new ContextModificationRow(modification,checkBox);
+	 				new ContextModificationRow(modification,checkBox, viewComponent.getRenderer());
 	 			add(modificationRow);
 	 			add(Box.createRigidArea(new Dimension(0, 5)));
 	 		// }

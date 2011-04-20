@@ -3,8 +3,10 @@ package de.tudresden.inf.tcs.ontocomp.ui;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.protege.editor.owl.ui.renderer.OWLModelManagerEntityRenderer;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 /* 
@@ -35,13 +37,26 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 public class Renderer {
 
+	private OWLModelManagerEntityRenderer entityRenderer = null;
+
+	public Renderer(OWLModelManagerEntityRenderer ren) {
+		this.entityRenderer = ren;
+	}
+
+	public String getFragment(OWLEntity entity) {
+		IRI id = entity.getIRI();
+		String ret = (id.getFragment() == null) ? id.toString() : id
+				.getFragment().toString();
+		return ret;
+	}
+	
 	public String render(Set<OWLClass> s) {
 		if (s.isEmpty()) {
 			return "<b>Thing</b>";
 		}
 		String str = "<b>";
 		for (Iterator<OWLClass> it = s.iterator(); it.hasNext();) {
-			str += toString(it.next().getIRI());
+			str += renderEntity(it.next());
 			if (it.hasNext()) {
 				str += ", ";
 			}
@@ -51,20 +66,20 @@ public class Renderer {
 	}
 	
 	public String render(OWLNamedIndividual i) {
-		return "<b>" + toString(i.getIRI()) + "</b>";
+		return "<b>" + renderEntity(i) + "</b>";
 	}
 	
 	public String render(OWLClass c, boolean complement) {
 		if (complement) {
-			return "<b>not " + c + "</b>";
+			return "<b>not " + renderEntity(c) + "</b>";
 		}
 		else {
-			return "<b>" + c + "</b>";
+			return "<b>" + renderEntity(c) + "</b>";
 		}
 	}
 	
-	private String toString(IRI id) {
-		return (id.getFragment() == null) ?  id.toString(): id.getFragment().toString();
+	public String renderEntity(OWLEntity entity) {
+		return this.entityRenderer.render(entity);
 	}
 
 }

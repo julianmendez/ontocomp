@@ -160,9 +160,15 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	public OntoComPViewComponent() {
 		super();
 		listeners = new ArrayList<ExpertActionListener<OWLClass,OWLNamedIndividual>>();
-	    renderer = new Renderer();
 	}
 	
+	public Renderer getRenderer() {
+		if (renderer == null) {
+			renderer = new Renderer(getOWLModelManager().getOWLEntityRenderer());
+		}
+		return renderer;
+	}
+
 	@Override
 	protected void disposeOWLView() {
 		removeExpertActionListeners();
@@ -671,7 +677,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 	
 	private JPanel prepareExplorationPanel() {
 		// create the context table
-		contextTable = new ContextTable(context);
+		contextTable = new ContextTable(context, getRenderer());
 		// add the table to the contextScrollPane
 		contextScrollPane = new JScrollPane(contextTable);
 		// create the exploration panel
@@ -952,7 +958,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 							changeGUIState(Constants.ATTRIBUTES_ADDED);
 						}
 						catch (IllegalAttributeException e) {
-							writeMessage(cls.getIRI().getFragment() + GUIConstants.ATTRIBUTE_ALREADY_ADDED_MSG);
+							writeMessage(getRenderer().renderEntity(cls) + GUIConstants.ATTRIBUTE_ALREADY_ADDED_MSG);
 						}
 					}
 					dtde.dropComplete(true);
@@ -981,13 +987,13 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		// currentQuestion = question;
 		if (question.getPremise().isEmpty()) {
 			writeMessage("<hr>" + GUIConstants.QUESTION_TEXT_EMPTY_PREMISE + 
-					renderer.render(question.getConclusion()) + "?");
+					getRenderer().render(question.getConclusion()) + "?");
 		}
 		else {
 			writeMessage("<hr>" + GUIConstants.QUESTION_TEXT_PART1 + 
-					renderer.render(question.getPremise()) + "<br>" +
+					getRenderer().render(question.getPremise()) + "<br>" +
 				GUIConstants.QUESTION_TEXT_PART2  + 
-				renderer.render(question.getConclusion()) + "?");
+				getRenderer().render(question.getConclusion()) + "?");
 		}
 	}
 	
@@ -1014,14 +1020,14 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		if (question.getPremise().isEmpty()) {
 			writeMessage("<hr>" + GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT + "<br>" +
 					GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT_EMPTY_PREMISE +
-					renderer.render(question.getConclusion()));
+					getRenderer().render(question.getConclusion()));
 		}
 		else {
 			writeMessage("<hr>" + GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT + "<br>" +
 					GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT_PART1 +
-					renderer.render(question.getPremise()) + "<br>" +
+					getRenderer().render(question.getPremise()) + "<br>" +
 					GUIConstants.REQUEST_COUNTEREXAMPLE_TEXT_PART2 +
-					renderer.render(question.getConclusion()));
+					getRenderer().render(question.getConclusion()));
 					
 		}
 		// explanationHandler.handleExplain(getContext().toOWLSubClassAxiom(question));
