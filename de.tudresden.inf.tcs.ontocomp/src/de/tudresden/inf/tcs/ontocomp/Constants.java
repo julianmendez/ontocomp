@@ -66,7 +66,7 @@ public interface Constants {
 	static final int QUESTION_SKIPPED = 21;
 	static final int QUESTION_FOLLOWS_FROM_TBOX = 22;
 	
-	// The ID of the CEL reasoner. Looks like it contains redundancies, but OK. CEL identifies it like this
-	static final String CEL_REASONER_ID="de.tudresden.inf.lat.cel.de.tudresden.inf.lat.cel.protege.CelReasonerFactory";
+	static final String CEL_REASONER_ID="de.tudresden.inf.lat.cel.de.tudresden.inf.lat.cel.protege.CelProtegeReasonerFactory";
+	static final String JCEL_REASONER_ID="de.tudresden.inf.lat.jcel.de.tudresden.inf.lat.jcel.protege.main.JcelProtegeReasonerFactory";
 	static final String PELLET_REASONER_ID="com.owldl.pellet.pellet.reasoner.factory";
 }

@@ -216,9 +216,10 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			break;
 
 		case REASONER_CHANGED:
-			log.info("reasoner ID:" + getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId());
-			if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.CEL_REASONER_ID)) {
-				log.info("using the CEL reasoner");
+			String reasonerId  = getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId();
+			log.info("reasoner ID:" + reasonerId);
+			if (reasonerId.equals(Constants.CEL_REASONER_ID) || reasonerId.equals(Constants.JCEL_REASONER_ID)) {
+				log.info("using an EL reasoner (jcel/CEL)");
 				context = new ELIndividualContext(getOWLModelManager().getReasoner());
 				getContext().setExpert(this);
 				addExpertActionListener(getContext());
