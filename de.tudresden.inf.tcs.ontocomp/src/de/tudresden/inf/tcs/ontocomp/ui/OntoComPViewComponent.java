@@ -209,8 +209,8 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		getContext().setExpert(this);
 		addExpertActionListener(getContext());
 	
-		contextTable.setContext(getContext());
 		add(prepareGUI(),BorderLayout.CENTER);
+		contextTable.setContext(getContext());
 		
 	    dt = new DropTarget(this, this);
 	    // dt.setActive(true);
@@ -238,6 +238,7 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 			addExpertActionListener(getContext());
 	
 			contextTable.setContext(getContext());
+
 			getContext().setReasoner(getOWLModelManager().getReasoner());
 			// getContext().setReasonerID(getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId());
 			log.debug("set reasoner of the context");
