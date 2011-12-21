@@ -179,24 +179,38 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		return null;
 	}
 	
+	private IndividualContext createContext() {
+		IndividualContext ret = null;
+		String reasonerId = getOWLModelManager().getOWLReasonerManager()
+				.getCurrentReasonerFactoryId();
+		if (reasonerId.equals(Constants.CEL_REASONER_ID)
+				|| reasonerId.equals(Constants.JCEL_REASONER_ID)) {
+			log.info("using EL reasoner "
+					+ getOWLModelManager().getOWLReasonerManager()
+							.getCurrentReasonerName());
+			ret = new ELIndividualContext(getOWLModelManager().getReasoner());
+		} else {
+			log.info("using reasoner "
+					+ getOWLModelManager().getOWLReasonerManager()
+							.getCurrentReasonerName());
+			ret = new IndividualContext(getOWLModelManager().getReasoner());
+		}
+		return ret;
+	}
+
 	@Override
 	protected void initialiseOWLView() throws Exception {
 		setLayout(new BorderLayout(10,10));
 		
 		getOWLModelManager().addListener(this);
-		
-		if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.CEL_REASONER_ID)) {
-			context = new ELIndividualContext(getOWLModelManager().getReasoner());
-		}
-		else {
-			context = new IndividualContext(getOWLModelManager().getReasoner());
-		}
+	
+		context = createContext();
 		
 		getContext().setExpert(this);
 		addExpertActionListener(getContext());
 	
-		add(prepareGUI(),BorderLayout.CENTER);
 		contextTable.setContext(getContext());
+		add(prepareGUI(),BorderLayout.CENTER);
 		
 	    dt = new DropTarget(this, this);
 	    // dt.setActive(true);
@@ -218,27 +232,12 @@ public class OntoComPViewComponent extends AbstractOWLViewComponent implements D
 		case REASONER_CHANGED:
 			String reasonerId  = getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId();
 			log.info("reasoner ID:" + reasonerId);
-			if (reasonerId.equals(Constants.CEL_REASONER_ID) || reasonerId.equals(Constants.JCEL_REASONER_ID)) {
-				log.info("using an EL reasoner (jcel/CEL)");
-				context = new ELIndividualContext(getOWLModelManager().getReasoner());
-				getContext().setExpert(this);
-				addExpertActionListener(getContext());
-				contextTable.setContext(getContext());
-			}
-			// if Pellet is being used
-			else if (getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId().equals(Constants.PELLET_REASONER_ID)) {
-				log.info("using the Pellet reasoner");
-			    // Set flags for incremental consistency
-			    // PelletOptions.USE_COMPLETION_QUEUE = true;
-			    // PelletOptions.USE_INCREMENTAL_CONSISTENCY = true;
-			    // PelletOptions.USE_SMART_RESTORE = false;
-			}
-			// else {
-			// 	context = new IndividualContext(getOWLModelManager().getOWLOntologyManager(),
-			// 			getOWLModelManager().getReasoner(), getOWLModelManager().getActiveOntology());
-			// }
-		
-			
+			context = createContext();
+
+			getContext().setExpert(this);
+			addExpertActionListener(getContext());
+	
+			contextTable.setContext(getContext());
 			getContext().setReasoner(getOWLModelManager().getReasoner());
 			// getContext().setReasonerID(getOWLModelManager().getOWLReasonerManager().getCurrentReasonerFactoryId());
 			log.debug("set reasoner of the context");
