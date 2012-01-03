@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+   <extension id="OntoComPViewComponent"
+         point="org.protege.editor.core.application.ViewComponent">
+      <label value="Ontology Completion"/>
+      <class value="de.tudresden.inf.tcs.ontocomp.ui.OntoComPViewComponent"/>
+      <category value="@org.protege.misccategory"/>
+   </extension>
+   
+   <extension id="OntoComPWorkspaceTab"
+         point="org.protege.editor.core.application.WorkspaceTab">
+      <label value="OntoComP"/>
+      <class value="org.protege.editor.owl.ui.OWLWorkspaceViewsTab"/>
+      <index value="X"/>
+      <editorKitId value="OWLEditorKit"/>
+      <defaultViewConfigFileName value="viewconfig-OntoComPTab.xml"/>
+   </extension>
+</plugin>

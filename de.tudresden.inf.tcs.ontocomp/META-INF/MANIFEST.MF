@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ontology Completion Plugin
+Bundle-SymbolicName: de.tudresden.inf.tcs.ontocomp;singleton:=true
+Bundle-Category: protege
+Bundle-ContactAddress: sertkaya@tcs.inf.tu-dresden.de
+Bundle-DocURL: http://lat.inf.tu-dresden.de/systems/OntoComP
+Bundle-Description: A plugin for ontology completion
+Bundle-Vendor: Baris Sertkaya
+Import-Package: de.tudresden.inf.tcs.fcaapi,
+ de.tudresden.inf.tcs.fcalib,
+ javax.swing,
+ javax.swing.table,
+ javax.swing.text,
+ javax.swing.text.html,
+ org.apache.log4j
+Bundle-Version: 0.10.2
+Export-Package: de.tudresden.inf.tcs.OCT;
+  uses:="de.tudresden.inf.tcs.fcalib,
+   org.semanticweb.owl.model,
+   org.semanticweb.owl.inference,
+   de.tudresden.inf.tcs.fcaapi",
+ de.tudresden.inf.tcs.fcaapi,
+ de.tudresden.inf.tcs.fcalib;uses:="de.tudresden.inf.tcs.utils,de.tudresden.inf.tcs.fcaapi",
+ de.tudresden.inf.tcs.utils
+Bundle-ClassPath: .,
+ lib/fcaapi/fcaapi/0.10.2/fcaapi-0.10.2.jar,
+ lib/fcalib/fcalib/0.10.2/fcalib-0.10.2.jar,
+ lib/oclib/oclib/0.10.2/oclib-0.10.2.jar
+Require-Bundle: org.eclipse.equinox.registry,
+ org.eclipse.equinox.common,
+ org.protege.common,
+ org.protege.editor.core.application,
+ org.protege.editor.owl,
+ org.semanticweb.owl.owlapi

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/fcaapi/fcaapi/0.10.2/fcaapi-0.10.2.jar"/>
+	<classpathentry kind="lib" path="lib/fcalib/fcalib/0.10.2/fcalib-0.10.2.jar"/>
+	<classpathentry kind="lib" path="lib/oclib/oclib/0.10.2/oclib-0.10.2.jar" sourcepath="/de.tudresden.inf.tcs.oclib/src"/>
+	<classpathentry kind="lib" path="lib/log4j/log4j/1.2.16/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/owlapi/owlapi/3.2.4/owlapi-3.2.4.jar" sourcepath="lib/owlapi/owlapi/3.2.4/owlapi-src-3.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/org/protege/editor.core.application/4.1/editor.core.application-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/org/protege/editor.owl/4.1/editor.owl-4.1.jar"/>
+	<classpathentry kind="output" path="build/bin"/>
+</classpath>
