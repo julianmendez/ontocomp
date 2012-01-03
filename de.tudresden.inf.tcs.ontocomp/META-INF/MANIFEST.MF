@@ -10,24 +10,23 @@ Bundle-Vendor: Baris Sertkaya
 Import-Package: de.tudresden.inf.tcs.fcaapi,
  de.tudresden.inf.tcs.fcalib,
  javax.swing,
+ javax.swing.table,
  javax.swing.text,
  javax.swing.text.html,
- javax.swing.table,
  org.apache.log4j
 Bundle-Version: 0.10.0
 Export-Package: de.tudresden.inf.tcs.OCT;
- uses:="de.tudresden.inf.tcs.fcalib,
- org.semanticweb.owl.model,
- org.semanticweb.owl.inference,
- de.tudresden.inf.tcs.fcaapi",
+  uses:="de.tudresden.inf.tcs.fcalib,
+   org.semanticweb.owl.model,
+   org.semanticweb.owl.inference,
+   de.tudresden.inf.tcs.fcaapi",
  de.tudresden.inf.tcs.fcaapi,
- de.tudresden.inf.tcs.fcalib;
- uses:="de.tudresden.inf.tcs.utils,de.tudresden.inf.tcs.fcaapi",
+ de.tudresden.inf.tcs.fcalib;uses:="de.tudresden.inf.tcs.utils,de.tudresden.inf.tcs.fcaapi",
  de.tudresden.inf.tcs.utils
 Bundle-ClassPath: .,
- lib/de.tudresden.inf.tcs.fcaapi/jars/fcaapi-0.10.0.jar,
- lib/de.tudresden.inf.tcs.fcalib/jars/fcalib-0.10.0.jar,
- lib/de.tudresden.inf.tcs.oclib/jars/oclib-0.10.0.jar
+ lib/fcaapi/fcaapi/0.10.0/fcaapi-0.10.0.jar,
+ lib/fcalib/fcalib/0.10.0/fcalib-0.10.0.jar,
+ lib/oclib/oclib/0.10.0/oclib-0.10.0.jar
 Require-Bundle: org.eclipse.equinox.registry,
  org.eclipse.equinox.common,
  org.protege.common,
