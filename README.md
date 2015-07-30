@@ -9,7 +9,9 @@ The approach uses the knowledge acquisition method called *attribute exploration
 
 
 ## Developers
+
 Original Developer: [Barış Sertkaya](https://sites.google.com/site/sertkayabaris/)
+
 Additional Developer: [Julian Mendez](http://lat.inf.tu-dresden.de/~mendez/)
 
 
