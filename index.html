@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>OntoComP by julianmendez</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">OntoComP</h1>
+      <h2 class="project-tagline">A Protégé plugin for completing OWL ontologies</h2>
+      <a href="https://github.com/julianmendez/ontocomp" class="btn">View on GitHub</a>
+      <a href="https://github.com/julianmendez/ontocomp/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/julianmendez/ontocomp/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="ontocomp" class="anchor" href="#ontocomp" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://julianmendez.github.io/ontocomp/">OntoComP</a>
+</h1>
+
+<p><em>A Protégé plugin for completing OWL ontologies</em></p>
+
+<p><strong>OntoComP</strong> is a <a href="http://protege.stanford.edu/">Protégé 4</a> plugin for completing OWL ontologies. It enables the user to check whether an OWL ontology contains "all relevant information" about the application domain, and extend the ontology appropriately if this is not the case. It achieves this by asking the user questions of the form <em>"are instances of classes C1 and C2 also instances of the class C3?"</em>. If the user confirms such a question, then a new axiom of the application domain that does not follow from the ontology has been discovered, and it is added to the ontology. If she rejects it, she is expected to give a counterexample to this question, i.e., an individual that is an instance of <em>C1</em>, <em>C2</em> and <em>not C3</em>. When all such questions (about some initially given classes) have been answered, the ontology is complete w.r.t. the application domain.</p>
+
+<p>The approach uses the knowledge acquisition method called <em>attribute exploration</em> developed in <em>Formal Concept Analysis (FCA)</em>. It has been introduced in [1] and described in detail in [2]. <strong>OntoComP</strong> is an implementation of the algorithm described in [3]. It uses the ontology completion library <a href="http://github.com/julianmendez/ontocomplib/">OntoComPlib</a> which is based on the FCA library <a href="http://github.com/julianmendez/fcalib/">FCAlib</a>.</p>
+
+<h2>
+<a id="developers" class="anchor" href="#developers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developers</h2>
+
+<p>Original Developer: <a href="https://sites.google.com/site/sertkayabaris/">Barış Sertkaya</a>
+Additional Developer: <a href="http://lat.inf.tu-dresden.de/%7Emendez/">Julian Mendez</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://www.gnu.org/licenses/gpl-3.0.txt">GNU GPL v3</a></p>
+
+<h2>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h2>
+
+<p>[1] F. Baader, B. Ganter, U. Sattler, and B. Sertkaya. <a href="http://lat.inf.tu-dresden.de/research/papers/2007/BGSS-IJCAI07.pdf">Completing Description Logic Knowledge Bases using Formal Concept Analysis</a>. In Proceedings of the Twentieth International Joint Conference on Artificial Intelligence (IJCAI-07). AAAI Press, 2007.</p>
+
+<p>[2] F. Baader, B. Ganter, U. Sattler, and B. Sertkaya. <a href="http://lat.inf.tu-dresden.de/research/reports/2006/BGSS-LTCS-06-02.pdf">Completing Description Logic Knowledge Bases using Formal Concept Analysis</a>. LTCS-Report 06-02, Chair for Automata Theory, Institute for Theoretical Computer Science, Dresden University of Technology, Germany, 2006.</p>
+
+<p>[3] F. Baader, and B. Sertkaya. <a href="http://lat.inf.tu-dresden.de/research/papers/2009/BaSe09.pdf">Usability Issues in Description Logic Knowledge Base Completion</a>. In Proceedings of the 7th International Conference on Formal Concept Analysis, (ICFCA 2009), volume 5548 of LNAI. Springer-Verlag, 2009.</p>
+
+<p>[4] B. Sertkaya. <a href="http://lat.inf.tu-dresden.de/research/papers/2009/Sert09b.pdf">OntoComP: A Protege Plugin for Completing OWL Ontologies</a>. In Proceedings of the 6th European Semantic Web Conference, (ESWC 2009), volume 5554 of LNCS. Springer-Verlag, 2009</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/julianmendez/ontocomp">OntoComP</a> is maintained by <a href="https://github.com/julianmendez">julianmendez</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
