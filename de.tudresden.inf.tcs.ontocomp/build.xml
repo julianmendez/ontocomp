@@ -95,4 +95,6 @@
 		<delete dir="${build}" />
 	</target>
 
+	<target name="test" depends="clean, jar" />
+
 </project>

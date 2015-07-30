@@ -6,6 +6,11 @@
 	<property name="child.directory" value="de.tudresden.inf.tcs.ontocomp" />
 
 
+	<!-- Runs the tests. -->
+	<target name="test">
+		<subant antfile="${child.directory}/build.xml" buildpath="." target="test" />
+	</target>
+
 	<!-- Cleans compiled files. -->
 	<target name="clean">
 		<subant antfile="${child.directory}/build.xml" buildpath="." target="clean" />
