@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ontocomp-parent" default="dist" basedir=".">
+
+	<!-- For more information about this file, see http://ant.apache.org -->
+
+	<property name="child.directory" value="de.tudresden.inf.tcs.ontocomp" />
+
+
+	<!-- Cleans compiled files. -->
+	<target name="clean">
+		<subant antfile="${child.directory}/build.xml" buildpath="." target="clean" />
+	</target>
+
+	<!-- Compiles this module. -->
+	<target name="dist">
+		<subant antfile="${child.directory}/build.xml" buildpath="." />
+	</target>
+
+</project>
+

@@ -1,0 +1,14 @@
+
+#
+# Configuration file for Travis CI
+# http://travis-ci.org/
+#
+
+language: java
+
+jdk:
+  - oraclejdk7
+  - openjdk7
+  - oraclejdk8
+
+
