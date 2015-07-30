@@ -1,4 +1,4 @@
-# ontocomp
+# OntoComP
 
 *A Protégé plugin for completing OWL ontologies*
 
