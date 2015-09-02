@@ -251,6 +251,16 @@
 		<developerConnection>scm:git:https://github.com/julianmendez/ontocomp.git</developerConnection>
 	</scm>
 
+	<repositories>
+
+		<repository>
+			<id>ontocomprepository</id>
+			<name>OntoComP local Maven repository</name>
+			<url>file:${project.basedir}/lib</url>
+		</repository>
+
+	</repositories>
+
 	<profiles>
 
 		<profile>
