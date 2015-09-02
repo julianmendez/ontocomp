@@ -3,7 +3,7 @@
 
 	<!-- For more information about this file, see http://ant.apache.org -->
 
-	<property name="child.directory" value="de.tudresden.inf.tcs.ontocomp" />
+	<property name="child.directory" value="ontocomp" />
 
 
 	<!-- Runs the tests. -->
