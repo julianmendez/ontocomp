@@ -181,7 +181,7 @@
 			</plugins>
 		</pluginManagement>
 
-		<finalName>de.tu-dresden.inf.lat.ontocomp</finalName>
+		<finalName>${project.groupId}-${project.version}</finalName>
 
 		<plugins>
 
