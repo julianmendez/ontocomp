@@ -29,7 +29,7 @@
 	<groupId>de.tu-dresden.inf.lat.ontocomp</groupId>
 	<artifactId>ontocomp</artifactId>
 	<version>0.11.0</version>
-	<packaging>jar</packaging>
+	<packaging>bundle</packaging>
 
 	<dependencies>
 
