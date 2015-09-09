@@ -8,13 +8,13 @@
       <class value="de.tudresden.inf.tcs.ontocomp.ui.OntoComPViewComponent"/>
       <category value="@org.protege.misccategory"/>
    </extension>
-   
+
    <extension id="OntoComPWorkspaceTab"
          point="org.protege.editor.core.application.WorkspaceTab">
       <label value="OntoComP"/>
       <class value="org.protege.editor.owl.ui.OWLWorkspaceViewsTab"/>
       <index value="X"/>
       <editorKitId value="OWLEditorKit"/>
-      <defaultViewConfigFileName value="viewconfig-OntoComPTab.xml"/>
+      <defaultViewConfigFileName value="ontocomp.layout.xml"/>
    </extension>
 </plugin>

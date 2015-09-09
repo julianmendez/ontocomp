@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout>
-    <VSNode splits="0.20 0.80">
+    <VSNode splits="0.2 0.8">
         <CNode>
             <Component label="Inferred class hierarchy">
                 <Property id="pluginId" value="org.protege.editor.owl.InferredOWLClassHierarchy"/>
             </Component>
         </CNode>
-        
         <CNode>
             <Component label="OCP View Component">
-                <Property id="pluginId" value="de.tudresden.inf.tcs.ontocomp.OntoComPViewComponent"/>
+                <Property id="pluginId" value=""/>
+            </Component>
+            <Component label="Ontology Completion">
+                <Property id="pluginId" value="de.tu-dresden.inf.lat.ontocomp.OntoComPViewComponent"/>
             </Component>
         </CNode>
     </VSNode>
