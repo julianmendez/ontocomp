@@ -8,9 +8,6 @@
         </CNode>
         <CNode>
             <Component label="OCP View Component">
-                <Property id="pluginId" value=""/>
-            </Component>
-            <Component label="Ontology Completion">
                 <Property id="pluginId" value="de.tu-dresden.inf.lat.ontocomp.OntoComPViewComponent"/>
             </Component>
         </CNode>
