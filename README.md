@@ -18,6 +18,7 @@ Additional Developer: [Julian Mendez](http://lat.inf.tu-dresden.de/~mendez/)
 
 
 ## License
+
 [GNU GPL v3](http://www.gnu.org/licenses/gpl-3.0.txt)
 
 
