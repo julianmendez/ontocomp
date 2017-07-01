@@ -14,7 +14,7 @@ The approach uses the knowledge acquisition method called *attribute exploration
 
 Original Developer: [Barış Sertkaya](https://sites.google.com/site/sertkayabaris/)
 
-Additional Developer: [Julian Mendez](https://lat.inf.tu-dresden.de/~mendez/)
+Additional Developer: [Julian Mendez](https://julianmendez.github.io)
 
 
 ## License
