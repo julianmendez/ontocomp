@@ -7,9 +7,11 @@
 language: java
 
 jdk:
-  - oraclejdk7
   - openjdk7
+  - oraclejdk7
+  - openjdk8
   - oraclejdk8
+  - oraclejdk9
 
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=false -B -V
