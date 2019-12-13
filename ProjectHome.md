@@ -11,9 +11,7 @@ application domain.
 
 The approach uses the knowledge acquisition method called _attribute exploration_ developed in _Formal Concept Analysis (FCA)_. It has been introduced in `[1]` and described in detail in `[2]`. **OntoComP** is an implementation of the algorithm described in `[3]`. It uses the ontology completion library [OntoComPlib](https://code.google.com/p/ontocomplib/) which is based on the FCA library [FCAlib](https://code.google.com/p/fcalib/).
 
-
 ---
-
 
 `[1]` F. Baader, B. Ganter, U. Sattler, and B. Sertkaya.  [Completing Description Logic Knowledge Bases using Formal Concept Analysis](https://lat.inf.tu-dresden.de/research/papers/2007/BGSS-IJCAI07.pdf). In  Proceedings of the Twentieth International Joint Conference on Artificial Intelligence (IJCAI-07). AAAI Press, 2007.
 
@@ -22,3 +20,4 @@ The approach uses the knowledge acquisition method called _attribute exploration
 `[3]` F. Baader, and B. Sertkaya.  [Usability Issues in Description Logic Knowledge Base Completion](https://lat.inf.tu-dresden.de/research/papers/2009/BaSe09.pdf). In  Proceedings of the 7th International Conference on Formal Concept Analysis, (ICFCA 2009), volume 5548 of LNAI. Springer-Verlag, 2009.
 
 `[4]` B. Sertkaya. OntoComP: [A Protege Plugin for Completing OWL Ontologies](https://lat.inf.tu-dresden.de/research/papers/2009/Sert09b.pdf). In Proceedings of the 6th European Semantic Web Conference, (ESWC 2009), volume 5554 of LNCS. Springer-Verlag, 2009
+
