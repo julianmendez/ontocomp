@@ -21,3 +21,4 @@ The approach uses the knowledge acquisition method called _attribute exploration
 
 `[4]` B. Sertkaya. OntoComP: [A Protege Plugin for Completing OWL Ontologies](https://lat.inf.tu-dresden.de/research/papers/2009/Sert09b.pdf). In Proceedings of the 6th European Semantic Web Conference, (ESWC 2009), volume 5554 of LNCS. Springer-Verlag, 2009
 
+
