@@ -2,7 +2,7 @@
 
 *A Protégé plugin for completing OWL ontologies*
 
-[![build](https://travis-ci.org/julianmendez/ontocomp.png?branch=master)](https://travis-ci.org/julianmendez/ontocomp)
+[![build](https://github.com/julianmendez/ontocomp/workflows/Java%20CI/badge.svg)](https://github.com/julianmendez/ontocomp/actions)
 [![license](https://img.shields.io/badge/license-LGPL%203.0-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.txt)
 
 **OntoComP** is a [Protégé 4](https://protege.stanford.edu/) plugin for completing OWL ontologies. It enables the user to check whether an OWL ontology contains "all relevant information" about the application domain, and extend the ontology appropriately if this is not the case. It achieves this by asking the user questions of the form *"are instances of classes C1 and C2 also instances of the class C3?"*. If the user confirms such a question, then a new axiom of the application domain that does not follow from the ontology has been discovered, and it is added to the ontology. If she rejects it, she is expected to give a counterexample to this question, i.e., an individual that is an instance of *C1*, *C2* and *not C3*. When all such questions (about some initially given classes) have been answered, the ontology is complete w.r.t. the application domain.
