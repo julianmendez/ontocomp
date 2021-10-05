@@ -55,26 +55,29 @@
 		<dependency>
 			<groupId>net.sourceforge.owlapi</groupId>
 			<artifactId>owlapi-distribution</artifactId>
-			<version>4.2.5</version>
+			<version>${owlapi.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>edu.stanford.protege</groupId>
-			<artifactId>org.protege.editor.owl</artifactId>
-			<version>5.0.0-beta-17</version>
+			<artifactId>protege-editor-owl</artifactId>
+			<version>${protege.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>edu.stanford.protege</groupId>
-			<artifactId>org.protege.editor.core.application</artifactId>
-			<version>5.0.0-beta-17</version>
+			<artifactId>protege-editor-core</artifactId>
+			<version>${protege.version}</version>
 		</dependency>
 
 	</dependencies>
 
 	<properties>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+        <owlapi.version>4.5.9</owlapi.version>
+        <protege.version>5.5.0</protege.version>
 
 		<bundle.classpath>.</bundle.classpath>
 		<bundle.activator>org.protege.editor.core.plugin.DefaultPluginActivator</bundle.activator>
