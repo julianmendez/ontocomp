@@ -77,7 +77,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 
         <owlapi.version>4.5.9</owlapi.version>
-        <protege.version>5.5.0</protege.version>
+        <protege.version>5.6.5</protege.version>
 
 		<bundle.classpath>.</bundle.classpath>
 		<bundle.activator>org.protege.editor.core.plugin.DefaultPluginActivator</bundle.activator>
